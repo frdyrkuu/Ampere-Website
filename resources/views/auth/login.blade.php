@@ -12,7 +12,8 @@
                         <article class="ml-0 lg:ml-20 md:w-full">
                             <h2
                                 class="text-2xl font-semibold md:text-4xl text-black text-center md:text-left animate-reveal w-full">
-                                <span class="text-orange-500 font-extrabold">ACS PRO-TECH</span> <br> Login Form
+                                <span class="text-orange-500 font-extrabold">ACS PRO-TECH</span> <br> <span
+                                    class="text-2xl">Login Form</span>
                             </h2>
                             <h3
                                 class="font-['Poppins'] text-lg font-thin text-gray-600 text-center md:text-left animate-reveal-x">
@@ -28,7 +29,7 @@
                         </div>
                     </section>
 
-                    <div class="card-body">
+                    <div class="">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -69,9 +70,9 @@
                             <div class="row mb-3">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
+
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
-
                                         <label class="form-check-label" for="remember">
                                             {{ __('Remember Me') }}
                                         </label>
@@ -79,20 +80,34 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit"
-                                        class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded">
-                                        {{ __('Login') }}
-                                    </button>
+                            <div class="w-full lg:w-1/2 mx-auto text-center">
+                                <!-- Submit button -->
+                                <button type="submit"
+                                    class="inline-block w-full rounded bg-orange-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-2xl transition duration-150 ease-in-out hover:bg-orange-600">
+                                    Sign in
+                                </button>
 
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
+                                <!-- Divider -->
+                                <div
+                                    class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-400 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-400">
+                                    <p class="mx-4 mb-0 text-center font-semibold">
+                                        OR
+                                    </p>
                                 </div>
+
+                                <!-- Submit button -->
+
+                                <a href="{{ route('register') }}""
+                                    class="inline-block w-full rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-2xl transition duration-150 ease-in-out hover:bg-blue-600">Register</a>
+
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link mt-10" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </div>
+
                         </form>
                     </div>
                 </div>

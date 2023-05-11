@@ -22,7 +22,7 @@
 </head>
 
 <body class="font-['Poppins']">
-    <div id="app">
+
 
         {{-- HEADER  --}}
         <header class="sticky top-0 z-50">
@@ -45,6 +45,7 @@
                                 @endif
 
                                 @if (Route::has('register'))
+
                                 @endif
                             @else
                                 <p class="text-gray-700 text-sm mr-4">|</p>
@@ -84,7 +85,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+
 </body>
 
 </html>
