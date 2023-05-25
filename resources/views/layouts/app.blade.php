@@ -25,8 +25,8 @@
 
 
         {{-- HEADER  --}}
-        <header class="sticky top-0 z-50">
-            <div class="bg-white shadow-xl rounded-2xl">
+        <header class="sticky top-0 z-10">
+            <div class="bg-white rounded-2xl shadow">
                 <div class="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-24">
                         <div class="flex">

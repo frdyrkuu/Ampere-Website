@@ -80,7 +80,8 @@
                     ACS PRO-TECH
                 </h2>
                 <br>
-                <h2 class="text-2xl
+                <h2
+                    class="text-2xl
                     font-semibold sm:text-4xl text-black text-center md:text-left animate-reveal">
                     The <span class="text-yellow-400 font-semibold">Ultimate Guide
                     </span>
@@ -95,7 +96,7 @@
                 <br>
 
                 <div class="flex justify-center md:justify-start">
-                    <a href="/login"
+                    <a href="/home"
                         class="bg-orange-500 p-2  rounded-xl text-white font-semibold shadow-xl transition duration-500 hover:scale-110 px-6 mx-4 border-b-4 border border-orange-700">Let's
                         Get Started</a>
                 </div>
