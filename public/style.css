@@ -8,5 +8,15 @@ body {
 }
 
 .card-container {
-    height: 400px; /* Adjust the height as per your requirement */
-  }
+    height: 400px;
+    /* Adjust the height as per your requirement */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

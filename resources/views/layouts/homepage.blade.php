@@ -56,7 +56,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-black" href="{{ route('logout') }}"
+
+                                <a class="dropdown-item text-black" href=""
+                                    onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                                    Chart
+                                </a>
+
+                                <a class="dropdown-item text-red-500 hover:text-red-500" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
