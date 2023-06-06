@@ -25,4 +25,44 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS FOR THE CONVERSION / FORMULA
+    |--------------------------------------------------------------------------
+    */
+
+    // FUNCTION FOR AMPERE TRIP
+    public function amperetrip()
+    {
+        // ADD FUNCTION HERE
+    }
+
+    // FUNCTION FOR AMPACITY OF CONDUCTORS
+    public function ampacityConductors()
+    {
+        // ADD FUNCTION HERE
+
+    }
+
+    // FUNCTION FOR PERCENTAGE VOLTAGE
+    public function percentageVoltage()
+    {
+        // ADD FUNCTION HERE
+
+    }
+
+    // FUNCTION FOR POWER QUALITY
+    public function powerQuality()
+    {
+        // ADD FUNCTION HERE
+
+    }
+
+    // FUNCTION FOR ENERGY CONSERVATION
+    public function energyConservation()
+    {
+        // ADD FUNCTION HERE
+
+    }
 }
