@@ -59,13 +59,16 @@
 
                                 <a class="dropdown-item text-black" href=""
                                     onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-line-chart py-auto" aria-hidden="true"></i>
                                     Chart
                                 </a>
-
+                                <br>
+                                <hr class="">
                                 <a class="dropdown-item text-red-500 hover:text-red-500" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out py-auto" aria-hidden="true"></i>
                                     {{ __('Logout') }}
                                 </a>
 
