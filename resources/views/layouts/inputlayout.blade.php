@@ -31,7 +31,7 @@
             <div class="mx-auto px-8 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-24">
                     <div class="flex">
-                        <a href="/" class="flex-shrink-0 flex items-center">
+                        <a href="/home" class="flex-shrink-0 flex items-center">
                             <img class="h-14 w-14 rounded-full" src="image/icon.png" alt="ACS-LOGO">
                             <span class="text-orange-500 text-2xl ml-2 font-extrabold">ACS PRO-TECH</span>
                         </a>
@@ -91,7 +91,7 @@
     <main class="">
         @yield('content')
     </main>
-
+<script src="/ampacity-conductors-autofill.js"></script>
 </body>
 
 </html>

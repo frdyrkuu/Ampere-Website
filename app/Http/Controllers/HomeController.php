@@ -35,6 +35,7 @@ class HomeController extends Controller
     // FUNCTION FOR AMPERE TRIP
     public function amperetrip()
     {
+
         // ADD FUNCTION HERE
     }
 
