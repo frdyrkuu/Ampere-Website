@@ -16,14 +16,14 @@
                         trip the circuit [usually from 60% up to 100% of the AF]
                     </p>
                     {{-- FORM HERE --}}
-                    <form method="" class="space-y-4 md:space-y-6" action="">
+                    <form method="POST" class="space-y-4 md:space-y-6" action="/amperetrip/results">
                         @csrf
 
                         {{-- CKT SELECTION  --}}
 
                         <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                             Circuit Breaker</label>
-                        <select id="circuit"
+                        <select id="circuit" name="circuitNumber"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
                             <option value="" disabled selected required>Choose a Circuit</option>
@@ -38,6 +38,7 @@
 
                         <div class="mt-4 relative h-11 w-full min-w-[200px]">
                             <input
+                                name="ampereTrip"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " type="number" required />
                             <label
@@ -50,6 +51,7 @@
                         {{-- REAL CURRENT  --}}
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input
+                                name="realCurrent"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " type="number" required />
                             <label

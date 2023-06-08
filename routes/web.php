@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +31,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('', [App\Http\Controllers\HomeController::class, 'amperetrip'])->name('amperetrip');
-// Route::get('', [App\Http\Controllers\HomeController::class, 'ampacityConductors'])->name('ampacityConductors');
-// Route::get('', [App\Http\Controllers\HomeController::class, 'percentageVoltage'])->name('percentageVoltage');
+Route::match(['post', 'get'], '/amperetrip/results', [HomeController::class, 'amperetrip'])
+    ->middleware('checkInputValues')
+    ->name('output-amperetrip');
+
+Route::match(['post', 'get'], '/ampacity-of-conductors/results', [HomeController::class, 'ampacityConductors'])
+    ->name('output-ampacity-conductors');
+
+Route::match(['post', 'get'], '/percentage-of-voltage/results', [HomeController::class, 'percentageVoltage'])
+    ->name('output-voltage-drop');
+
 // Route::get('', [App\Http\Controllers\HomeController::class, 'powerQuality'])->name('powerQuality');
 // Route::get('', [App\Http\Controllers\HomeController::class, 'energyConservation'])->name('energyConservation');
 

@@ -27,7 +27,6 @@ const temperatureValues = {
     'THWN-2': '90°C',
     'USE-2': '90°C',
     'XHH': '90°C',
-    'XHHW': '90°C',
     'XHHW-2': '90°C',
     'ZW-2': '90°C',
     // Add more temperature values for other options

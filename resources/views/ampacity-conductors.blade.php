@@ -14,14 +14,14 @@
                     </h1>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus, ut.</p>
                     {{-- FORM HERE --}}
-                    <form method="" class="space-y-4 md:space-y-6" action="">
+                    <form method="POST" class="space-y-4 md:space-y-6" action="/ampacity-of-conductors/results">
                         @csrf
 
                         {{-- CKT SELECTION  --}}
 
                         <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                             Circuit Breaker</label>
-                        <select id="circuit"
+                        <select id="circuit" name="circuitNumber"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
                             <option value="" disabled selected required>Choose a Circuit</option>
@@ -37,7 +37,7 @@
                         <div class="relative h-11 w-full min-w-[200px] mt-4">
                             <input
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                placeholder=" " type="number" required />
+                                name="realCurrent" placeholder=" " type="number" required />
                             <label
                                 class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                                 Real Current [I]
@@ -51,9 +51,24 @@
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input type="text" id="conductor-type" aria-label="disabled input 2"
                                 class="bg-gray-100 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="Copper" disabled readonly>
+                                name="conductorType" value="Copper" readonly>
                         </div>
 
+                        {{-- NUMBER OF SETS --}}
+
+                        <label for="numberset" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number
+                            of Sets</label>
+                        <select id="numberset" name="numberSets"
+                            class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
+                            required>
+                            <option value="" disabled selected required>Choose a Number of Set</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="5">6</option>
+                        </select>
                         {{-- MORE ON SELECT DROPDOWN --}}
                         <div class="flex">
 
@@ -64,7 +79,7 @@
                                     Size</label>
                                 <select id="wire-size"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
-                                    required>
+                                    name="wireSize" required>
                                     <option value="" disabled selected required>Wire Size mm¹ [AWG]</option>
                                     <option value="2.0">2.0 [14]</option>
                                     <option value="3.5">3.5 [12]</option>
@@ -97,7 +112,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wire Type</label>
                                 <select id="wire-type"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
-                                    required>
+                                    name="wireType" required>
                                     <option value="" disabled selected required>Wire Type</option>
                                     <option value="TW">TW</option>
                                     <option value="UF">UF</option>
@@ -121,7 +136,6 @@
                                     <option value="THWN-2">THWN-2</option>
                                     <option value="USE-2">USE-2</option>
                                     <option value="XHH">XHH</option>
-                                    <option value="XHHW">XHHW</option>
                                     <option value="XHHW-2">XHHW-2</option>
                                     <option value="ZW-2">ZW-2</option>
                                 </select>
@@ -137,20 +151,20 @@
                                 <label for="ambient-temperature"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Ambient
                                     Temperature</label>
-                                <input id="ambient-temperature"
+                                <input id="ambient-temperature" name="ambientTemp"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
-                                    placeholder="Temperature" disabled required>
+                                    placeholder="Temperature" readonly required>
                             </div>
                             {{-- END TEMPARATURE RATING  --}}
 
                             {{-- NO. OF CURRENT --}}
                             <div class="w-1/2">
                                 <label for="no-current"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. of
-                                    Current</label>
-                                <input id="no-current"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current
+                                    Carrying</label>
+                                <input id="no-current" name="noCurrent"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
-                                    placeholder="Current" disabled required>
+                                    placeholder="Current" readonly required>
                             </div>
                             {{-- END WIRE TYPE --}}
                         </div>
