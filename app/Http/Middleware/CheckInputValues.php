@@ -20,7 +20,7 @@ class CheckInputValues
         $real_current = $request->input('realCurrent');
 
         if (!$circuit_Number || !$ampere_trip || !$real_current) {
-            return abort(403, 'Forbidden');
+            return redirect()->back();
         }
         return $next($request);
     }

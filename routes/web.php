@@ -32,8 +32,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::match(['post', 'get'], '/amperetrip/results', [HomeController::class, 'amperetrip'])
-    ->middleware('checkInputValues')
-    ->name('output-amperetrip');
+      ->name('output-amperetrip');
 
 Route::match(['post', 'get'], '/ampacity-of-conductors/results', [HomeController::class, 'ampacityConductors'])
     ->name('output-ampacity-conductors');

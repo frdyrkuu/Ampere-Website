@@ -45,7 +45,7 @@ class HomeController extends Controller
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            abort(403, 'Forbidden');
+            return redirect('amperetrip');
         }
 
         // If validation passes, process the inputs and return the view
@@ -61,8 +61,9 @@ class HomeController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        $ampereTrip_Results = $real_current / $ampere_trip * 100;
-        $percentage = number_format($ampereTrip_Results, 3);
+        $ampereTrip_Results = $real_current / $ampere_trip;
+        $percentage = number_format($ampereTrip_Results * 100, 3);
+        $ampereTrip_Results = number_format($ampereTrip_Results, 3);
 
         return view('output-amperetrip', [
             'circuitNumber' => $circuit_Number,
@@ -146,7 +147,7 @@ class HomeController extends Controller
         $real_voltage = $request->input('realVoltage');
         $voltage = $request->input('voltage');
 
-         /*
+        /*
         |--------------------------------------------------------------------------
         | CALCULATION CONVERSION / FORMULA
         | Percentage of Voltage Drop [1-((Real Voltage)/(240 or 230 or 220))]x 100

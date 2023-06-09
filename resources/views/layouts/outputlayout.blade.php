@@ -19,14 +19,13 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="/style.css">
-
 </head>
 
 <body class="font-['Poppins']">
 
     {{-- HEADER  --}}
     <header class="sticky top-0 z-10">
-        <div class="bg-white rounded-2xl shadow">
+        <div class="bg-white rounded-b-2xl shadow">
             <div class="mx-auto px-8 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-24">
                     <div class="flex">
@@ -90,9 +89,11 @@
     {{-- END HEADER --}}
 
 
-    <main class="">
+    <main>
         @yield('content')
     </main>
+
+    <script src="/percentage.js"></script>
 </body>
 
 </html>

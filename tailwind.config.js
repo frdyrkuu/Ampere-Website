@@ -8,6 +8,12 @@ module.exports = {
     ],
     theme: {
         extend: {
+            screens: {
+                sm: '640px',
+                md: '768px',
+                lg: '1024px',
+                xl: '1280px',
+            },
             keyframes: {
                 wave: {
                     '0%': { transform: 'rotate(0.0deg)' },
