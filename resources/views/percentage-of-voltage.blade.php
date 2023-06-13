@@ -24,22 +24,20 @@
 
                         <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                             Circuit Breaker</label>
-                        <select id="circuit"
-                            name="circuitNumber"
+                        <select id="circuit" name="circuitNumber"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
                             <option value="" disabled selected required>Choose a Circuit</option>
-                            <option value="ckt1">CKT NUMBER 1</option>
-                            <option value="ckt2">CKT NUMBER 2</option>
-                            <option value="ckt3">CKT NUMBER 3</option>
-                            <option value="ckt4">CKT NUMBER 4</option>
-                            <option value="ckt5">CKT NUMBER 5</option>
+                            <option value="1">CKT NUMBER 1</option>
+                            <option value="2">CKT NUMBER 2</option>
+                            <option value="3">CKT NUMBER 3</option>
+                            <option value="4">CKT NUMBER 4</option>
+                            <option value="5">CKT NUMBER 5</option>
                         </select>
 
                         {{-- REAL CURRENT  --}}
                         <div class="relative h-11 w-full min-w-[200px]">
-                            <input
-                                name="realVoltage"
+                            <input name="realVoltage"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " type="number" required />
                             <label
@@ -51,8 +49,7 @@
                         {{-- VOLTS --}}
                         <label for="circuit"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voltage</label>
-                        <select id="circuit"
-                            name="voltage"
+                        <select id="circuit" name="voltage"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
                             <option value="" disabled selected required>Volts</option>

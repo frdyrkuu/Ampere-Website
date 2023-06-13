@@ -91,7 +91,7 @@ class HomeController extends Controller
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            abort(403, 'Forbidden');
+            return redirect('ampacity-of-conductors');
         }
 
         // ADD FUNCTION HERE
@@ -139,7 +139,7 @@ class HomeController extends Controller
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            abort(403, 'Forbidden');
+            return redirect ('percentage-of-voltage');
         }
 
 

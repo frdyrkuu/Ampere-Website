@@ -27,11 +27,11 @@
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
                             <option value="" disabled selected required>Choose a Circuit</option>
-                            <option value="ckt1">CKT NUMBER 1</option>
-                            <option value="ckt2">CKT NUMBER 2</option>
-                            <option value="ckt3">CKT NUMBER 3</option>
-                            <option value="ckt4">CKT NUMBER 4</option>
-                            <option value="ckt5">CKT NUMBER 5</option>
+                            <option value="1">CKT NUMBER 1</option>
+                            <option value="2">CKT NUMBER 2</option>
+                            <option value="3">CKT NUMBER 3</option>
+                            <option value="4">CKT NUMBER 4</option>
+                            <option value="5">CKT NUMBER 5</option>
                         </select>
 
                         {{-- AMPERE TRIP  --}}

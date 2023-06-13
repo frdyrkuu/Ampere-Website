@@ -10,9 +10,9 @@
                 {{-- LINK 1 --}}
                 <a href="/amperetrip">
                     <div
-                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110">
+                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110 min-w-[200px]">
                         <img class="w-58 my-2 mx-auto" src="image/ampere-trip.png" alt="Ampere Trip">
-                        <div class="p-4">
+                        <div class="pb-4">
                             <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Ampere Trip</h3>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                 {{-- LINK 2 --}}
                 <a href="/ampacity-of-conductors">
                     <div
-                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110">
+                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110 min-w-[200px]">
                         <img class="w-58 my-2 mx-auto" src="image/ampacity-conductors.png" alt="Ampacity of Conductors">
                         <div class="p-4">
                             <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Ampacity of Conductors
@@ -39,7 +39,7 @@
                 {{-- LINK 3 --}}
                 <a href="/percentage-of-voltage">
                     <div
-                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110">
+                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110 min-w-[200px]">
                         <img class="w-58 my-2 mx-auto" src="image/voltage-drop.png" alt="Percentage of Voltage Drop">
                         <div class="p-4">
                             <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Percentage of Voltage
@@ -55,7 +55,7 @@
                 {{-- LINK 4 --}}
                 <a href="/power-quality">
                     <div
-                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110">
+                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110 min-w-[200px]">
                         <img class="w-58 my-2 mx-auto" src="image/power-quality.png" alt="Power Factor/Power Quality">
                         <div class="p-4">
                             <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Power Quality</h3>
@@ -69,14 +69,16 @@
                 {{-- LINK 5 --}}
                 <a href="/energy-conservation">
                     <div
-                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110">
+                        class="flex flex-col justify-between bg-white rounded-lg overflow-hidden shadow-md h-[250px] w-[150px] sm:w-full sm:h-full transition duration-500 hover:scale-110 min-w-[200px]">
                         <img class="w-58 my-2 mx-auto" src="image/energy-saving.png" alt="Energy Efficiency">
                         <div class="p-4">
-                            <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Energy Conservation</h3>
+                            <h3 class="text-orange-500 text-sm sm:text-xl font-bold mb-2 text-center">Energy Conservation
+                            </h3>
                         </div>
                     </div>
                 </a>
             </div>
+        </div>
 
     </section>
-@endsection
+  @endsection

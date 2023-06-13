@@ -24,7 +24,8 @@
                                 <div class="mt-4 relative h-11 w-full ">
                                     <input name="circuitNumber"
                                         class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                        placeholder=" " type="text" value="{{ $circuitNumber }}" readonly required />
+                                        placeholder=" " type="text" value="CKT NUMBER {{ $circuitNumber }}" readonly
+                                        required />
                                     <label
                                         class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                                         Circuit No.
@@ -71,7 +72,8 @@
                                 <div class="">
                                     {{-- ADD SOME COMMENT ABOUT THE RESULT HERE --}}
                                     <h1 class="text-center pt-4 font-bold text-2xl" id="condition">Good</h1>
-                                    <p class="px-4 text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit nam repudiandae
+                                    <p class="px-4 text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                        Suscipit nam repudiandae
                                         doloribus rem, aspernatur repellat voluptate tempora eligendi illo neque.</p>
                                 </div>
                             </div>
@@ -93,5 +95,65 @@
                 </div>
             </div>
         </div>
+
+        {{-- JAVASCRIPT FOR THE FUNCTION COLOR CHANGE FOR UI INFORMATION   --}}
+        <script>
+            // Get the input element
+            const input = document.getElementById('percentage');
+
+            // Get the percentage value from the input element
+            const percentage = parseFloat(input.value);
+
+            // Determine the color class, condition, and image source based on the percentage value
+            let colorClass;
+            let condition;
+            let imageSource;
+
+            switch (true) {
+                case percentage >= 81 && percentage <= 100:
+                    colorClass = 'text-red-500';
+                    condition = 'Alert';
+                    imageSource = '/image/alert.png';
+                    break;
+                case percentage >= 75 && percentage < 81:
+                    colorClass = 'text-yellow-500';
+                    condition = 'Neutral';
+                    imageSource = '/image/neutral.png';
+                    break;
+                case percentage >= 0 && percentage < 75:
+                    colorClass = 'text-green-500';
+                    condition = 'Good';
+                    imageSource = '/image/good.png';
+                    break;
+                default:
+                    colorClass = 'text-black';
+                    condition = 'Unknown';
+                    imageSource = '/image/good.png';
+                    break;
+            }
+
+            // Add the color class to the input element
+            input.classList.add(colorClass);
+
+            // Get the condition element
+            const conditionElement = document.getElementById('condition');
+
+            // Add the color class to the condition element
+            conditionElement.classList.add(colorClass);
+
+            // Update the condition text content
+            conditionElement.textContent = condition;
+
+            // Get the condition image element
+            const conditionImageElement = document.getElementById('conditionImage');
+
+            // Set the image source
+            conditionImageElement.src = imageSource;
+            conditionImageElement.alt = condition;
+
+            console.log(colorClass);
+        </script>
+
+
     </section>
 @endsection
