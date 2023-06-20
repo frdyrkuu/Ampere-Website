@@ -32,13 +32,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::match(['post', 'get'], '/amperetrip/results', [HomeController::class, 'amperetrip'])
-      ->name('output-amperetrip');
+    ->name('output-amperetrip');
 
 Route::match(['post', 'get'], '/ampacity-of-conductors/results', [HomeController::class, 'ampacityConductors'])
     ->name('output-ampacity-conductors');
 
 Route::match(['post', 'get'], '/percentage-of-voltage/results', [HomeController::class, 'percentageVoltage'])
     ->name('output-voltage-drop');
+
+Route::match(['post', 'get'], '/power-quality/results', [HomeController::class, 'powerQuality'])
+    ->name('output-power-quality');
 
 // Route::get('', [App\Http\Controllers\HomeController::class, 'powerQuality'])->name('powerQuality');
 // Route::get('', [App\Http\Controllers\HomeController::class, 'energyConservation'])->name('energyConservation');

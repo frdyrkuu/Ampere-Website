@@ -139,7 +139,7 @@ class HomeController extends Controller
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            return redirect ('percentage-of-voltage');
+            return redirect('percentage-of-voltage');
         }
 
 
@@ -169,10 +169,41 @@ class HomeController extends Controller
     }
 
     // FUNCTION FOR POWER QUALITY
-    public function powerQuality()
+    public function powerQuality(Request $request)
     {
         // ADD FUNCTION HERE
+        $validator = Validator::make($request->all(), [
+            'circuitNumber' => 'required',
+            'powerQuality' => 'required',
+        ]);
 
+        // If validation fails, redirect back with error messages
+        if ($validator->fails()) {
+            return redirect('power-quality');
+        }
+
+
+        $circuit_Number = $request->input('circuitNumber');
+        $power_quality = $request->input('powerQuality');
+
+        // Determine the condition based on the power quality value
+        $condition = '';
+
+        if ($power_quality >= 0.010 && $power_quality <= 0.890) {
+            $condition = 'Voltage Sag';
+        } elseif ($power_quality >= 0.900 && $power_quality <= 1.000) {
+            $condition = 'Safe Condition';
+        } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
+            $condition = 'Voltage Swell';
+        } else {
+            $condition = 'Unknown Condition';
+        }
+
+        return view('output-power-quality', [
+            'circuitNumber' => $circuit_Number,
+            'powerQuality' => $power_quality,
+            'condition' => $condition,
+        ]);
     }
 
     // FUNCTION FOR ENERGY CONSERVATION
