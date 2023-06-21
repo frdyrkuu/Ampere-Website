@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -207,9 +208,26 @@ class HomeController extends Controller
     }
 
     // FUNCTION FOR ENERGY CONSERVATION
-    public function energyConservation()
+    public function energyConservation(Request $request)
     {
         // ADD FUNCTION HERE
+        $applianceNames = $request->input('applianceName');
+        $numberAppliances = $request->input('numberAppliance');
+        $numberDurations = $request->input('numberDuration');
 
+        $inputData = [];
+
+        // Combine the values into a single array
+        for ($i = 0; $i < count($applianceNames); $i++) {
+            $inputData[] = [
+                'applianceName' => $applianceNames[$i],
+                'numberAppliance' => $numberAppliances[$i],
+                'numberDuration' => $numberDurations[$i],
+            ];
+        }
+
+        // Process the input data as needed
+        dd($inputData);
+        return response()->json(['success' => $inputData]);
     }
 }

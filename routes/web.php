@@ -43,8 +43,10 @@ Route::match(['post', 'get'], '/percentage-of-voltage/results', [HomeController:
 Route::match(['post', 'get'], '/power-quality/results', [HomeController::class, 'powerQuality'])
     ->name('output-power-quality');
 
-// Route::get('', [App\Http\Controllers\HomeController::class, 'powerQuality'])->name('powerQuality');
-// Route::get('', [App\Http\Controllers\HomeController::class, 'energyConservation'])->name('energyConservation');
+// Route::match(['post', 'get'], '/energy-conservation/results', [HomeController::class, 'energyConservation'])
+//     ->name('output-energy-conservation');
+Route::post('/energy-conservation/results', [HomeController::class, 'energyConservation']);
+
 
 
 

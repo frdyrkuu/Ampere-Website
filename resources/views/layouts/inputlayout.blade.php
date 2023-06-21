@@ -19,6 +19,8 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 
@@ -94,7 +96,6 @@
     <main class="">
         @yield('content')
     </main>
-    <script src="/ampacity-conductors-autofill.js"></script>
 </body>
 
 </html>
