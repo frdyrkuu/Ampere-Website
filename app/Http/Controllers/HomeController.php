@@ -211,23 +211,67 @@ class HomeController extends Controller
     public function energyConservation(Request $request)
     {
         // ADD FUNCTION HERE
+        // JQUERY
         $applianceNames = $request->input('applianceName');
+        $applianceWatts = $request->input('appWatts');
         $numberAppliances = $request->input('numberAppliance');
         $numberDurations = $request->input('numberDuration');
+        $selectedDuration = $request->input('selectedTime');
+
+        if ($applianceNames === null || $numberAppliances === null || $numberDurations === null) {
+            return  redirect('energy-conservation');
+        }
+
+        // Validator
+        $validator = Validator::make($request->all(), [
+            'applianceName.*' => 'required',
+            'numberAppliance.*' => 'required|numeric',
+            'numberDuration.*' => 'required|numeric',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return  redirect('energy-conservation');
+        }
 
         $inputData = [];
 
         // Combine the values into a single array
         for ($i = 0; $i < count($applianceNames); $i++) {
+            $appWatts = $applianceWatts[$i];
+            $numberAppliance = $numberAppliances[$i];
+            $numberDuration = $numberDurations[$i];
+
+            if ($selectedDuration === 'hours') {
+                $kWh = ($appWatts * $numberAppliance * $numberDuration) / 1000;
+            } elseif ($selectedDuration === 'monthly') {
+                $kWh = ($appWatts * $numberAppliance * $numberDuration * 30) / 1000;
+            } else {
+
+                $kWh = 0;
+            }
+
             $inputData[] = [
                 'applianceName' => $applianceNames[$i],
-                'numberAppliance' => $numberAppliances[$i],
-                'numberDuration' => $numberDurations[$i],
+                'appWatts' => $appWatts,
+                'numberAppliance' => $numberAppliance,
+                'numberDuration' => $numberDuration,
+                'kWh' => $kWh,
             ];
         }
 
+        $totalkWh = 0; // Initialize total number of appliances variable
+
+        foreach ($inputData as $row) {
+            $totalkWh += $row['kWh'];
+        }
+
+
         // Process the input data as needed
-        dd($inputData);
-        return response()->json(['success' => $inputData]);
+        return view('output-energy-conservation', [
+            'inputData' => $inputData,
+            'selectedTime' => $selectedDuration,
+            'totalkWh' => $totalkWh,
+        ]);
     }
 }

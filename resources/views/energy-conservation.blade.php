@@ -2,10 +2,9 @@
 
 @section('content')
     {{-- ADD CONTENT HERE FOR USER INPUT --}}
-
     <section class="xl:mt-20">
         <div class="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-4xl xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-orange-500 flex items-center mb-6 text-2xl font-bold">
                         <img class="w-24 mx-auto" src="image/energy-saving.png" alt="logo">
@@ -16,15 +15,27 @@
                     <p class="text-center">Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Velit, iure.
                     </p>
+
+                    <hr>
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="/energy-conservation/results">
                         @csrf
                         {{-- ENERGY CONSERVATION --}}
 
+                        <label for="appliance"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Select
+                            Time Duration</label>
+                        <select id="appliance" name="selectedTime"
+                            class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full sm:w-1/4 p-2.5"
+                            required>
+                            <option value="hours">Dailies</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+
                         <div id="inputContainer" class="mt-2">
-                            <div class="inputRow flex gap-2 sm:gap-4 mt-4">
+                            <div class="inputRow flex gap-1 sm:gap-4 mt-4">
                                 {{-- select --}}
-                                <div class="w-1/3">
+                                <div class="w-1/4 sm:1/3">
                                     <label for="appliance"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Select
                                         Appliances</label>
@@ -53,12 +64,20 @@
                                     </select>
                                 </div>
 
+                                {{-- INPUT WATTS --}}
+                                <div class="mt-4 relative h-11 w-1/3 min-w-[50px]">
+                                    <input name="appWatts[]"
+                                        class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " type="number" required />
+                                    <label
+                                        class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 truncate">Wattage</label>
+                                </div>
                                 {{-- INPUT NUMBER OF APPLIANCE --}}
 
                                 <div class="mt-4 relative h-11 w-1/3 min-w-[50px]">
                                     <input name="numberAppliance[]"
                                         class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                        placeholder=" " type="number" step="0.001" required />
+                                        placeholder=" " type="number" required />
                                     <label
                                         class="text-gray-500 after:content[' '] truncate pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">No.
                                         of Appliance</label>
@@ -68,7 +87,7 @@
                                 <div class="mt-4 relative h-11 w-1/3 min-w-[50px]">
                                     <input name="numberDuration[]"
                                         class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                        placeholder=" " type="number" step="0.001" required />
+                                        placeholder=" " type="number" required />
                                     <label
                                         class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">Duration</label>
                                 </div>
@@ -77,13 +96,14 @@
                         </div>
 
                         <button type="button" id="addRowButton"
-                            class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Row</button>
+                            class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-400 font-medium rounded-full text-sm px-3 py-2.5 text-center">&#43;</button>
 
                         {{-- BUTTON PROCEED TO RESULTS --}}
 
                         <button type="submit"
                             class="w-full text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">&#8594
                             Proceed to Results</button>
+
 
                     </form>
                     {{-- END FORM --}}
@@ -124,12 +144,14 @@
 
                 $('.inputRow').each(function() {
                     var applianceName = $(this).find('.applianceName').val();
+                    var applianceWatts = $(this).find('.appWatts').val();
                     var numberAppliance = $(this).find('.numberAppliance').val();
                     var numberDuration = $(this).find('.numberDuration').val();
 
                     // Create an object with the row data
                     var row = {
                         applianceName: applianceName,
+                        applianceWatts: applianceWatts,
                         numberAppliance: numberAppliance,
                         numberDuration: numberDuration
                     };
