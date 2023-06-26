@@ -242,9 +242,9 @@ class HomeController extends Controller
             $numberAppliance = $numberAppliances[$i];
             $numberDuration = $numberDurations[$i];
 
-            if ($selectedDuration === 'hours') {
+            if ($selectedDuration === 'Dailies') {
                 $kWh = ($appWatts * $numberAppliance * $numberDuration) / 1000;
-            } elseif ($selectedDuration === 'monthly') {
+            } elseif ($selectedDuration === 'Monthly') {
                 $kWh = ($appWatts * $numberAppliance * $numberDuration * 30) / 1000;
             } else {
 

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 
-<body class="font-['Poppins']">
+<body class="font-['Poppins'] min-h-[100vh]">
 
     {{-- HEADER  --}}
     <header class="sticky top-0 z-10">
@@ -93,7 +93,34 @@
         @yield('content')
     </main>
 
-    <script src="/percentage.js"></script>
+    {{-- Footer --}}
+    <footer class="bg-orange-500 rounded-t-2xl shadow-xl mt-auto">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="/" class="flex items-center mb-4 sm:mb-0">
+                    <img src="/image/icon.png" class="h-8 w-8 mr-3" alt="ACS-PROTECH Logos" />
+                    <span class="self-center text-white  text-2xl font-bold whitespace-nowrap">ACS PRO-TECH</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-100 sm:mb-0">
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-50 sm:mx-auto lg:my-8" />
+            <span class="block text-sm text-gray-100 sm:text-center">© 2023 <a href=""
+                    class="hover:underline">ACS PRO-TECH™</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>
