@@ -93,58 +93,98 @@
                     <div class="border-b border-gray-200"></div>
                     <div class="bg-gray-100 p-10 sm:p-10 rounded">
                         <h1>Statements:</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, aperiam quae, expedita
-                            architecto quia optio sit, unde quo corporis quas harum officiis! Iste facere cupiditate
-                            exercitationem. Expedita ab nihil accusantium tempore, consequatur alias culpa similique
-                            accusamus, tempora aliquid ad quam.</p>
+                        <p class="py-2">Voltage drop (VD) takes place when a cable run's voltage is lower at the end than
+                            it was at its start. Any wire, regardless of size or length, will have some resistance; when a
+                            current flows through this dc resistance, the voltage falls. The resistance and reactance of the
+                            cable grow proportionally with its length. VD thus poses a special issue with extended cable
+                            lines. </p>
+
+                        <p class="py-2">Circuits with high voltage loss should be repaired or cables replaced. Check for
+                            corrosion, damaged wires, weak connections, or a battery cable with a smaller gauge if the
+                            voltage drop is more than what is expected.</p>
+
+                        <p class="py-2">If excessive voltage drops are not managed appropriately, they could result in low
+                            voltage powering your equipment, which will cause it to operate improperly or not at all,
+                            damaging it in the process. Voltage drops also result in heat at a connection with high
+                            resistance, which could start fires.</p>
+
+
+                        <p class="py-2 font-bold">Electrical circuits and equipment's lifespan and operational efficiency
+                            can be
+                            harmed by voltage drops of more than 3%.</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        {{-- JAVASCRIPT FOR THE FUNCTION COLOR CHANGE FOR UI INFORMATION   --}}
-
-        <script>
-            // Get the input element
-            const input = document.getElementById('percentage');
-
-            // Get the percentage value from the input element
-            const percentage = parseFloat(input.value);
-
-            // Determine the color class, condition, and image source based on the percentage value
-            let colorClass = 'text-green-500'; // Default to green
-            let condition = 'Good'; // Default condition
-            let imageSource = '/image/good.png'; // Default image source
-
-            if (percentage >= 3.1 && percentage <= 100) {
-                colorClass = 'text-red-500';
-                condition = 'Alert';
-                imageSource = '/image/alert.png';
-            } else if (percentage >= 0 && percentage <= 3) {
-                colorClass = 'text-green-500';
-                condition = 'Good';
-                imageSource = '/image/good.png';
-            }
-
-            // Add the color class to the input element
-            input.classList.add(colorClass);
-
-            // Get the condition element
-            const conditionElement = document.getElementById('condition');
-
-            // Add the color class to the condition element
-            conditionElement.classList.add(colorClass);
-
-            // Update the condition text content
-            conditionElement.textContent = condition;
-
-            // Get the condition image element
-            const conditionImageElement = document.getElementById('conditionImage');
-
-            // Set the image source
-            conditionImageElement.src = imageSource;
-            conditionImageElement.alt = condition;
-        </script>
-
     </section>
+
+    <section class="max-w-7xl mx-auto py-4 sm:px-0 px-4">
+        <h1 class="text-orange-500 text-2xl font-bold">Strategies to reduce these voltage drops:<span><i
+                    class="fa fa-lightbulb-o text-orange-500" style="font-size:48px"></i></span></h1>
+        <div class="px-2 py-4">
+            <h1 class="font-bold text-base">1. Increase the Quantity of Conductors or the Size of the Conductor</h1>
+            <p class="p-2 text-base">The resistance will decrease when the amount and size of the conductors are increased,
+                resulting in a reduction in the voltage drop and a gain in efficiency. Additionally, it can reduce the
+                overall power losses associated with conductors of a conventional size. By inserting an isolated conductor,
+                voltage drop brought on by grounding can be minimized.</p>
+
+            <p class="p-2 text-base">The overall power losses, which are often higher in conductors of standard size (as
+                indicated by the general codes), can also be significantly reduced by this process.</p>
+
+            <p class="p-2 text-base text-justify">**For the accurate sizing of conductor, check PEC Table 3.10.1.16
+                Allowable Ampacities
+                of Insulated Conductors Rated 0 Through 2000 Volts, 60°C Through 90°C (140°F Through 194°F), Not More Than
+                Three Current-Carrying Conductors in Raceway, Cable, or Earth (Directly Buried), Based on Ambient
+                Temperature of 30°C (86°F). </p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">2. Reduce Power Load</h1>
+            <p class="p-2 text-base">Voltage drops can be lessened by reducing the amount of electrical equipment connected
+                to a circuit, which reduces the power load. However, in this instance, care should also be taken to ensure
+                that there are no more than six outlets connected to each branch circuit.</p>
+            <p class="p-2 text-base">Receptacles in residential complexes should not be more than 50 feet apart from one
+                another, and there should be at least one outside receptacle installed for each home, it should be noted.
+            </p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">3. Decrease the Length of the Conductor</h1>
+            <p class="p-2 text-base">The resistance of the conductor decreases with a shorter conductor, which lowers
+                voltage drop. Circuit lengths are typically predetermined, however if panels or subpanels are placed as
+                close to the loads as practicable, especially for sensitive electronic equipment, some control can be
+                applied at the design stage.</p>
+
+            <p class="p-2 text-base">The voltage drop will be greater if the wire is lengthy but still the right size; but,
+                because the resistance is distributed over the entire wire, it won't get hotter in one place like a bad
+                connection. The result won't lead to a hazardous state in the conductor, but it will LOWER circuit amperage
+                and perhaps poor performance of the device.</p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">4. Decrease the Temperature of the Conductor</h1>
+            <p class="p-2 text-base">Voltage drops occur when conductors reach high temperatures because they block the
+                passage of power. Therefore, one can reduce these voltage drops by intentionally lowering the conductor's
+                temperature.</p>
+
+            <p class="p-2 text-base">It should be remembered that the resistance rises by 0.3% for every degree the
+                temperature rises. The formula to be used:</p>
+            <p class="py-2 text-center font-serif text-2xl italic border w-1/2 mx-auto mt-2">R<sub>2</sub> = R<sub>1</sub> [1 + α(T<sub>2</sub> -
+                T<sub>1</sub>)]</p>
+            <p class="py-2 font-serif text-base">
+                Where,
+            </p>
+
+            <div class="font-serif text-xl">
+                <p>R<sub>1</sub> = Resistance to power flow at Temperature, T<sub>1</sub></p>
+                <p>R<sub>2</sub> = Resistance to power flow at Temperature, T<sub>2</sub></p>
+                <p>α = Coefficient of electrical resistance of Copper</p>
+            </div>
+
+            <p class="py-2 text-base">As the difference between T<sub>2</sub> and T<sub>1</sub> decreases, the resistance to power ‘α ‘ will also cease to decrease.</p>
+        </div>
+    </section>
+
+
+    <script src="{{ asset('js/voltage-drop-results.js') }}"></script>
 @endsection

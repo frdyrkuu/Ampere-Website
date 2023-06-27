@@ -137,73 +137,85 @@
                     <div class="border-b border-gray-200"></div>
                     <div class="bg-gray-100 p-10 sm:p-10 rounded">
                         <h1>Statements:</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, aperiam quae, expedita
-                            architecto quia optio sit, unde quo corporis quas harum officiis! Iste facere cupiditate
-                            exercitationem. Expedita ab nihil accusantium tempore, consequatur alias culpa similique
-                            accusamus, tempora aliquid ad quam.</p>
+                        <p class="py-2">Wire ampacity is the maximum electrical current (or "Amps") that can be present in
+                            a conductor of
+                            a particular size without endangering safety. An inner copper conductor and the outer wire
+                            insulation make up a wire in its simplest form. As the current level rises, the conductor's
+                            temperature will increase. The determination of wire ampacity has significance since it
+                            establishes the wire size and temperature rating of the wire insulation needed for the
+                            application.</p>
+
+                        <p class="py-2">By selecting a conductor that is too tiny for the specified electrical load, you
+                            run the risk of generating an overheating condition that could damage the wire insulation, limit
+                            its lifespan, and eventually melt it, resulting in an electrical fire. Each year, electrical
+                            fires destroy tens of thousands of buildings, causing billions of dollars in damages as well as
+                            thousands of human injuries, some of which are deadly. Therefore, choosing wires with the
+                            appropriate ampacity is essential for safety.</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        {{-- JAVASCRIPT FOR THE FUNCTION COLOR CHANGE FOR UI INFORMATION   --}}
-        <script>
-            // Get the input element
-            const input = document.getElementById('percentage');
-
-            // Get the percentage value from the input element
-            const percentage = parseFloat(input.value);
-
-            // Determine the color class, condition, and image source based on the percentage value
-            let colorClass;
-            let condition;
-            let imageSource;
-
-            switch (true) {
-                case percentage >= 81 && percentage <= 100:
-                    colorClass = 'text-red-500';
-                    condition = 'Alert';
-                    imageSource = '/image/alert.png';
-                    break;
-                case percentage >= 75 && percentage < 81:
-                    colorClass = 'text-yellow-500';
-                    condition = 'Neutral';
-                    imageSource = '/image/neutral.png';
-                    break;
-                case percentage >= 0 && percentage < 75:
-                    colorClass = 'text-green-500';
-                    condition = 'Good';
-                    imageSource = '/image/good.png';
-                    break;
-                default:
-                    colorClass = 'text-black';
-                    condition = 'Unknown';
-                    imageSource = '/image/good.png';
-                    break;
-            }
-
-            // Add the color class to the input element
-            input.classList.add(colorClass);
-
-            // Get the condition element
-            const conditionElement = document.getElementById('condition');
-
-            // Add the color class to the condition element
-            conditionElement.classList.add(colorClass);
-
-            // Update the condition text content
-            conditionElement.textContent = condition;
-
-            // Get the condition image element
-            const conditionImageElement = document.getElementById('conditionImage');
-
-            // Set the image source
-            conditionImageElement.src = imageSource;
-            conditionImageElement.alt = condition;
-
-            console.log(colorClass);
-        </script>
-
-
     </section>
+
+
+    <section class="max-w-7xl mx-auto py-4 sm:px-0 px-4">
+        <h1 class="text-orange-500 text-2xl font-bold">Benefits of Bigger Wire Size for Your Power Bill and Home<span><i
+                    class="fa fa-lightbulb-o text-orange-500" style="font-size:48px"></i></span></h1>
+        <div class="px-2 py-4">
+            <h1 class="font-bold text-base">1. Faster Movement of Electrons through the Wire </h1>
+            <p class="p-2 text-base">More space for electron movement through the circuit is provided by the larger wire's
+                wider diameter.</p>
+
+            <p class="p-2 text-base">Smaller gauge wire is therefore rated for lower maximum amperage (electric current)
+                restrictions than bigger gauge wire. 15 amps of current may be carried by even the smallest ordinary
+                household cable. The largest common type of wire can support a maximum current of 95 amps and is typically
+                exclusively used in electrical service panels.</p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">2. Too-Small Wire Can Get Hot</h1>
+            <p class="p-2 text-base">The wiring becomes extremely hot when you overload a wire by plugging in an appliance
+                that requires more current than the wire is rated for. Wires that are overheated may lose their insulation
+                integrity. People who come into contact with exposed wires by accident run the risk of receiving a shock.
+            </p>
+
+            <p class="p-2 text-base">To enable an overrated appliance to operate, add a greater capacity circuit breaker or
+                turn off the breaker, but be aware that doing so increases the possibility of your home catching fire. Your
+                home won't be spared the effects of overloading your inadequate wiring due to the new circuit.</p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">3. Larger Diameter Wires Stays at Cool Temperature </h1>
+            <p class="p-2 text-base">Smaller wires become hotter than bigger diameter wires when both are carrying the same
+                current load, even if your wiring is appropriately rated for the amperage you want. Compared to the bigger
+                capacity cable, the smaller wire loses more electricity through heat loss.</p>
+            <p class="p-2 text-base">Depending on the size of your electrical system, the power savings could allow you to
+                recover the cost of the larger cable in two to three years. Remember that whether you utilize regular or
+                upsized wiring, most labor costs will remain the same. For larger-sized wiring, the wire itself accounts for
+                most of your investment.</p>
+        </div>
+
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">4. Bigger Wires Offer Additional Benefits</h1>
+            <p class="p-2 text-base">You have more design freedom when using larger gauge AWG wire for your electrical
+                system. When your wiring has increased current potential, an electrician can add more outlets. </p>
+
+            <p class="p-2 text-base">If you decide to upgrade your home's wiring in the future, installing larger wires
+                might not be necessary if your property already has higher-rated wiring. Installing wiring with a higher
+                capacity now can spare you the hassle of having to tear down walls in the future to update the wires if you
+                intend to add outlets or make other improvements to a room later.</p>
+
+            <p class="p-2 text-base">Larger wire also provides protection against voltage drops that compromise the
+                efficiency of your electrical appliances and gadgets. For instance, poor wiring results in lights dimming
+                when a refrigerator's compressor kicks on. Voltage fluctuations are annoying and eventually harm motors and
+                other electrical equipment.</p>
+
+            <p class="p-2 text-base">Your wiring is not supplying the necessary current if your fuses frequently blow or
+                your toaster runs slowly. By hiring an electrician to install larger wiring for you, you can improve the
+                safety, energy effectiveness, and future expandability of your home's electrical system.</p>
+        </div>
+    </section>
+
+
+    <script src="{{ asset('js/ampacity-conductors-autofill.js') }}"></script>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.outputlayout')
 
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {{-- <div class="text-center mt-10">
         <p>Type of Duration: {{ $selectedTime }}</p>
         @foreach ($inputData as $data)
@@ -15,64 +16,51 @@
     </div> --}}
 
     <section class="max-w-7xl mx-auto">
-        <h1 class="p-4 font-bold text-orange-500 text-2xl">Energy Conservation Results</h1>
+        <h1 class="p-4 font-bold text-orange-500 text-2xl sm:text-4xl">Energy Conservation Results</h1>
 
         {{-- TABLE  --}}
-        <p class="px-6 py-2 font-medium">Type of Duration: <span>
-                {{ $selectedTime }}
-            </span></p>
-        <div class="relative overflow-x-hidden px-4 sm:px-2">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-yellow-300">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">
-                            Appliances - Watts
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            No. of Appliances
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Duration
-                        </th>
-                        <th scope="col" class="px-6 py-3 rounded-r-lg">
-                            kWh
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($inputData as $data)
-                        <tr class="bg-white">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                {{ $data['applianceName'] }} - {{ $data['appWatts'] }} W
-                            </th>
-
-                            <td class="px-6 py-4">
-                                {{ $data['numberAppliance'] }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $data['numberDuration'] }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $data['kWh'] }}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full text-left text-sm font-light">
+                            <thead class="border-b font-medium bg-yellow-300">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Appliance-Watts</th>
+                                    <th scope="col" class="px-6 py-4">No. Appliances</th>
+                                    <th scope="col" class="px-6 py-4">Duration</th>
+                                    <th scope="col" class="px-6 py-4">kWh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($inputData as $data)
+                                    <tr class="border-b dark:border-neutral-500">
+                                        <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $data['applianceName'] }} -
+                                            {{ $data['appWatts'] }} W</td>
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $data['numberAppliance'] }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $data['numberDuration'] }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $data['kWh'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="justify-between px-12 mt-4 float-right">
+        <div class="justify-between px-12 mt-4 text-center sm:float-right mb-10">
             <h1 class="font-semibold text-lg">Total: <span
                     class="text-orange-500 font-bold text-2xl underline">{{ $totalkWh }}
-                    kWh</span></h1>
+                    kWh / {{ $selectedTime }}</span></h1>
         </div>
     </section>
 
     {{-- TIPS AND TRICKS --}}
     <section class="max-w-7xl mx-auto mt-10">
         <div>
-            <h1 class="p-4 font-bold text-orange-500 text-2xl">Tips and Tricks</h1>
+            <h1 class="p-4 font-bold text-orange-500 text-2xl">Tips and Tricks <span><i
+                        class="fa fa-lightbulb-o text-orange-500" style="font-size:48px"></i></span></h1>
             <div class="text-sm sm:text-lg px-4">
                 <p class="font-bold mb-2">
                     Here are some tips and tricks for energy conservation that you can follow:
@@ -84,9 +72,10 @@
                 </div>
 
                 {{-- THE DEAFULT TIPS  --}}
-                <div class="text-base px-4 mb-10">
+                <div class="text-sm px-2 text-justify mb-10">
 
-                    <h1 class="px-4 py-2 font-bold text-orange-500 text-2xl">Additional Tips</h1>
+                    <h1 class="py-2 font-bold text-orange-500 text-2xl">Additional Tips <span><i
+                                class="fa fa-lightbulb-o text-orange-500" style="font-size:48px"></i></span></h1>
                     <p class="py-2">
                         <span class="font-semibold">Use energy-efficient lighting:</span> Replace traditional incandescent
                         bulbs with energy-saving LED or CFL
@@ -120,6 +109,34 @@
                         others to adopt energy-saving habits and share tips and tricks for a greener lifestyle.</p>
                 </div>
             </div>
+        </div>
+
+        {{-- Check the Department of Energy’s E-POWER MO with ENERGY LABELS --}}
+        <div class="p-4">
+            <h1 class="text-orange-500 text-base font-bold">Check the Department of Energy’s E-POWER MO with ENERGY LABELS
+            </h1>
+            <p class="py-3">ENERGY LABELS, also known as Energy Guides, are the yellow labels that are frequently included
+                with home
+                electronics and lighting equipment. The energy efficiency of a product is indicated by the number on the
+                energy label. <span><br><a href="https://members.wto.org/crnattachments/2021/TBT/PHL/21_3738_00_e.pdf"
+                        class="italic">(Guide: https://members.wto.org/crnattachments
+                        /2021/TBT/PHL/21_3738_00_e.pdf)
+                    </a></span></p>
+            <img src="/image/energy-guide.jpg" alt="energy-guide" class="w-full md:w-1/2 mx-auto shadow-md rounded-lg">
+
+            <p class="py-4">
+                Examples of Energy Labels by the Department of Energy:
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <img src="/image/energy-label.jpg" alt="energy-guide"
+                    class="w-full sm:w-auto h-auto max-w-xs sm:max-w-none shadow-md rounded-lg">
+                <img src="/image/energy-guide_2.jpg.png" alt="energy-guide"
+                    class="w-full sm:w-auto h-auto max-w-xs sm:max-w-none shadow-md rounded-lg">
+                <img src="/image/energy-label_2.jpg.png" alt="energy-guide"
+                    class="w-full sm:w-auto h-auto max-w-xs sm:max-w-none shadow-md rounded-lg">
+            </div>
+
         </div>
     </section>
 
@@ -261,9 +278,222 @@
                     </table>
                     </div>
 
+                <div class="w-full overflow-x-auto mb-10">
+                    <hr class="mt-5 mb-3">
+                    <h1 class="text-orange-500 font-bold text-xl">Types of TV to know <span><i class="fa fa-lightbulb-o text-orange-500" style="font-size:24px"></i></span></h1>
+                    <h2 class="text-orange-500 py-2 text-center font-bold">Power Consumption-Watts</h2>
+                    <table class="w-full table-auto">
+                        <thead class="text-sm text-center">
+                        <tr>
+                            <th class="px-4 py-2">Screen size (in.)</th>
+                            <th class="px-4 py-2">LED</th>
+                            <th class="px-4 py-2">OLED</th>
+                            <th class="px-4 py-2">LCD</th>
+                            <th class="px-4 py-2">CRT</th>
+                            <th class="px-4 py-2">Plasma</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center text-xs">
+                        <tr>
+                            <td class="px-4 py-2">15 inch TV</td>
+                            <td class="px-4 py-2">15</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">18</td>
+                            <td class="px-4 py-2">65</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">17 inch TV</td>
+                            <td class="px-4 py-2">18</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">20</td>
+                            <td class="px-4 py-2">75</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">19 inch TV</td>
+                            <td class="px-4 py-2">20</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">22</td>
+                            <td class="px-4 py-2">80</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">20 inch TV</td>
+                            <td class="px-4 py-2">24</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">26</td>
+                            <td class="px-4 py-2">90</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">21 inch TV</td>
+                            <td class="px-4 py-2">26</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">30</td>
+                            <td class="px-4 py-2">100</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">22 inch TV</td>
+                            <td class="px-4 py-2">30</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">40</td>
+                            <td class="px-4 py-2">110</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">24 inch TV</td>
+                            <td class="px-4 py-2">35</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">50</td>
+                            <td class="px-4 py-2">120</td>
+                            <td class="px-4 py-2">N/A</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">30 inch TV</td>
+                            <td class="px-4 py-2">38</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">60</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">150</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">32 inch TV</td>
+                            <td class="px-4 py-2">41</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">70</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">160</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">37 inch TV</td>
+                            <td class="px-4 py-2">44</td>
+                            <td class="px-4 py-2">66</td>
+                            <td class="px-4 py-2">80</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">180</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">40 inch TV</td>
+                            <td class="px-4 py-2">50</td>
+                            <td class="px-4 py-2">72</td>
+                            <td class="px-4 py-2">100</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">200</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">42 inch TV</td>
+                            <td class="px-4 py-2">57</td>
+                            <td class="px-4 py-2">75</td>
+                            <td class="px-4 py-2">120</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">220</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">50 inch TV</td>
+                            <td class="px-4 py-2">72</td>
+                            <td class="px-4 py-2">89</td>
+                            <td class="px-4 py-2">150</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">300</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">55 inch TV</td>
+                            <td class="px-4 py-2">80</td>
+                            <td class="px-4 py-2">98</td>
+                            <td class="px-4 py-2">180</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">370</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">60 inch TV</td>
+                            <td class="px-4 py-2">88</td>
+                            <td class="px-4 py-2">107</td>
+                            <td class="px-4 py-2">200</td>
+                            <td class="px-4 py-2">N/A</td>
+                            <td class="px-4 py-2">500</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    </div>
                 `;
             } else if (applianceName === "Light Bulb") {
-                tip = "Tip for Light Bulb: Switch to energy-efficient LED bulbs to save electricity.";
+                tip = `
+                <div class="w-full overflow-x-auto">
+                    <h1 class="px-4 py-2 font-bold text-orange-500 text-2xl">Light Bulb</h1>
+                    <h2 class="text-orange-500 py-2 text-center font-bold">Power Consumption-Watts per Lumens</h2>
+                    <table class="w-full table-auto">
+                        <thead class="text-sm text-center">
+                        <tr>
+                            <th class="px-4 py-2">Type of Bulb</th>
+                            <th class="px-4 py-2">200-300</th>
+                            <th class="px-4 py-2">300-500</th>
+                            <th class="px-4 py-2">500-700</th>
+                            <th class="px-4 py-2">700-1000</th>
+                            <th class="px-4 py-2">1000-1250</th>
+                            <th class="px-4 py-2">1250-2000</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-xs text-center">
+                        <tr>
+                            <td class="px-4 py-2">Incandescent</td>
+                            <td class="px-4 py-2">25-30 W</td>
+                            <td class="px-4 py-2">40 W</td>
+                            <td class="px-4 py-2">60 W</td>
+                            <td class="px-4 py-2">75 W</td>
+                            <td class="px-4 py-2">120 W</td>
+                            <td class="px-4 py-2">150-250 W</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">Halogen</td>
+                            <td class="px-4 py-2">18-25 W</td>
+                            <td class="px-4 py-2">35 W</td>
+                            <td class="px-4 py-2">50 W</td>
+                            <td class="px-4 py-2">65 W</td>
+                            <td class="px-4 py-2">100 W</td>
+                            <td class="px-4 py-2">125 W</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">CFL</td>
+                            <td class="px-4 py-2">5-6 W</td>
+                            <td class="px-4 py-2">8 W</td>
+                            <td class="px-4 py-2">11 W</td>
+                            <td class="px-4 py-2">15 W</td>
+                            <td class="px-4 py-2">20 W</td>
+                            <td class="px-4 py-2">20-33 W</td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-4 py-2">LED</td>
+                            <td class="px-4 py-2">2-4 W</td>
+                            <td class="px-4 py-2">3-5 W</td>
+                            <td class="px-4 py-2">5-7 W</td>
+                            <td class="px-4 py-2">8-10 W</td>
+                            <td class="px-4 py-2">10-13 W</td>
+                            <td class="px-4 py-2">13-20 W</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    </div>
+                 `;
             }
             // Append the tip to the tipsContainer
             var tipsContainer = document.getElementById("tipsContainer");

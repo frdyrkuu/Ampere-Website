@@ -16,7 +16,7 @@
                         adipisicing elit. Velit, iure.
                     </p>
 
-                    <hr>
+
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="/energy-conservation/results">
                         @csrf
@@ -33,14 +33,15 @@
                         </select>
 
                         <div id="inputContainer" class="mt-2">
+
                             <div class="inputRow grid sm:flex gap-1 sm:gap-4 mt-4">
                                 {{-- select --}}
-                                <div class="w-full sm:1/3">
+                                <div class="w-full sm:w-1/2">
                                     <label for="appliance"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Select
                                         Appliances</label>
                                     <select id="appliance" name="applianceName[]"
-                                        class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
+                                        class="w-full sm:1/4 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block p-2.5"
                                         required>
                                         <option value="" disabled selected required>Appliance</option>
                                         <option value="Refrigerator">Refrigerator</option>
@@ -63,13 +64,14 @@
                                         <option value="Stand Mixer">Stand Mixer</option>
                                         <option value="Rice Cooker">Rice Cooker</option>
                                         <option value="Kettle">Kettle</option>
+                                        <option value="Others">Others...</option>
                                     </select>
                                 </div>
 
                                 <div class="flex gap-1">
                                     {{-- INPUT WATTS --}}
                                     <div class="mt-4 relative h-11 w-1/3 min-w-[50px]">
-                                        <input name="appWatts[]"
+                                        <input name="appWatts[]" id="wattsInput"
                                             class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                             placeholder=" " type="number" required />
                                         <label
@@ -117,68 +119,5 @@
             </div>
         </div>
     </section>
-
-    <script>
-        $(document).ready(function() {
-            var maxRows = 10; // Maximum number of rows
-
-            // Add Row button click event
-            $('#addRowButton').click(function() {
-                var rowCount = $('#inputContainer .inputRow').length;
-
-                // Check if maximum number of rows reached
-                if (rowCount < maxRows) {
-                    var newRow = $('.inputRow:first').clone(); // Clone the first row
-                    newRow.find('input[type="text"]').val(''); // Clear the input values
-                    $('#inputContainer').append(newRow); // Append the new row to the container
-                }
-            });
-
-            // Remove Row button click event
-            $('#inputContainer').on('click', '.removeRow', function() {
-                var rowCount = $('#inputContainer .inputRow').length;
-
-                // Check if there's more than one row before removing
-                if (rowCount > 1) {
-                    $(this).closest('.inputRow').remove(); // Remove the clicked row
-                }
-            });
-
-            // Submit button click event
-            $('#submitButton').click(function() {
-                var inputData = [];
-
-                $('.inputRow').each(function() {
-                    var applianceName = $(this).find('.applianceName').val();
-                    var applianceWatts = $(this).find('.appWatts').val();
-                    var numberAppliance = $(this).find('.numberAppliance').val();
-                    var numberDuration = $(this).find('.numberDuration').val();
-
-                    // Create an object with the row data
-                    var row = {
-                        applianceName: applianceName,
-                        applianceWatts: applianceWatts,
-                        numberAppliance: numberAppliance,
-                        numberDuration: numberDuration
-                    };
-
-                    inputData.push(row);
-                });
-
-                $.ajax({
-                    url: '/energy-conservation/results',
-                    method: 'POST',
-                    data: inputData, // Pass the inputData object directly
-                    success: function(response) {
-                        // Handle the response if needed
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        // Handle the error if needed
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('js/energy-conservation-jquery.js') }}"></script>
 @endsection

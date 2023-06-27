@@ -87,73 +87,81 @@
                     <div class="border-b border-gray-200"></div>
                     <div class="bg-gray-100 p-10 sm:p-10 rounded">
                         <h1>Statements:</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, aperiam quae, expedita
-                            architecto quia optio sit, unde quo corporis quas harum officiis! Iste facere cupiditate
-                            exercitationem. Expedita ab nihil accusantium tempore, consequatur alias culpa similique
-                            accusamus, tempora aliquid ad quam.</p>
+                        <p class="py-2"><span class="font-bold">PEC breaker rule of 80%.</span> The most fundamental PEC regulation
+                            specifies that you are not allowed
+                            to push the current over 80% of its specified ampacity. A 20-amp breaker, for instance, can only
+                            handle a 16A current. 20% of the maximum is 16A. the circuit breaker's designated ampacity. This
+                            is a precaution; you should have some overhead to keep the circuit from burning up.</p>
+                        <p class="py-2">The circuit, cables, and wires, as well as the connected device, may heat up or,
+                            in the event of
+                            a short circuit, begin to smoke and burn if an improperly sized circuit breaker is used. For
+                            efficient operation, a circuit breaker of the proper size is required.</p>
+
+                        <p class="py-2">If we use a 100A circuit breaker for a 30A circuit, it won't protect the circuit
+                            from fault currents and may burn and damage the device because a current greater than 30 amps
+                            won't trigger the circuit breaker. To put it simply, we must utilize a circuit breaker that is
+                            the correct size for the device. The circuit breaker current should be 125% of the circuit's
+                            current, neither more nor lower.    </p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        {{-- JAVASCRIPT FOR THE FUNCTION COLOR CHANGE FOR UI INFORMATION   --}}
-        <script>
-            // Get the input element
-            const input = document.getElementById('percentage');
+    <section class="max-w-7xl mx-auto py-4 sm:px-0 px-4">
+        <h1 class="text-orange-500 text-2xl font-bold">Tips to help prevent a circuit breaker from tripping <span><i
+                    class="fa fa-lightbulb-o text-orange-500" style="font-size:48px"></i></span></h1>
+        <div class="px-2 py-4">
+            <h1 class="font-bold text-base">1. Choose a Higher Rating of Overcurrent Protective Device </h1>
+            <p class="p-2 text-base">The rated current of a circuit breaker is a significant variable since it establishes
+                the maximum current the
+                breaker can handle without being damaged. Additionally, it is utilized to choose the right breaker size for
+                a given application. </p>
+            <p class="p-2 text-base">When compared to a breaker with a lower-rated current, a higher-rated current circuit
+                breaker can handle
+                higher levels of current.</p>
 
-            // Get the percentage value from the input element
-            const percentage = parseFloat(input.value);
+            <p class="p-2 text-base">It's significant to remember that a circuit breaker's rated current is also influenced
+                by the temperature of the device's various components.</p>
+        </div>
 
-            // Determine the color class, condition, and image source based on the percentage value
-            let colorClass;
-            let condition;
-            let imageSource;
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">2. Don’t Overload One Circuit</h1>
+            <p class="p-2 text-base">Your electrical load will be spread out among several circuits, which means that each
+                breaker won't have to support the entire amount of electricity running through it. Therefore, there is a
+                lower chance that you would unintentionally overload a breaker, causing it to trip and shut off. There's a
+                significant likelihood that a breaker is simply overloaded if you notice that it trips more frequently than
+                the others.</p>
+            <p class="p-2 text-base">See if it helps to try disconnecting some gadgets or to use some while not using
+                others. This happens frequently in kitchens where multiple culinary equipment, such as an electric range,
+                oven, microwave, and others, may be on and operating at once, using a massive quantity of current through a
+                single, tiny single-circuit breaker.</p>
+        </div>
 
-            switch (true) {
-                case percentage >= 81 && percentage <= 100:
-                    colorClass = 'text-red-500';
-                    condition = 'Alert';
-                    imageSource = '/image/alert.png';
-                    break;
-                case percentage >= 75 && percentage < 81:
-                    colorClass = 'text-yellow-500';
-                    condition = 'Neutral';
-                    imageSource = '/image/neutral.png';
-                    break;
-                case percentage >= 0 && percentage < 75:
-                    colorClass = 'text-green-500';
-                    condition = 'Good';
-                    imageSource = '/image/good.png';
-                    break;
-                default:
-                    colorClass = 'text-black';
-                    condition = 'Unknown';
-                    imageSource = '/image/good.png';
-                    break;
-            }
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">3. Replace Old Electrical Components</h1>
+            <p class="p-2 text-base">Electrical parts will deteriorate and age over time. Greater resistance is presented by
+                aging equipment, which must be overcome by drawing greater current. Drawing more current produces more heat,
+                and more heat leads to some of the conditions we've already mentioned, when there is a greatly increased
+                risk of fire or injury.</p>
+            <p class="p-2 text-base">The additional current also raises the possibility that your circuit breaker will trip,
+                cutting off that specific circuit. When your breaker is old, it can draw too much current though you may not
+                realize it due to the breaker's age, the age of the wires in your wall, and the age of the receptacles
+                connected to the wires.</p>
+        </div>
 
-            // Add the color class to the input element
-            input.classList.add(colorClass);
-
-            // Get the condition element
-            const conditionElement = document.getElementById('condition');
-
-            // Add the color class to the condition element
-            conditionElement.classList.add(colorClass);
-
-            // Update the condition text content
-            conditionElement.textContent = condition;
-
-            // Get the condition image element
-            const conditionImageElement = document.getElementById('conditionImage');
-
-            // Set the image source
-            conditionImageElement.src = imageSource;
-            conditionImageElement.alt = condition;
-
-            console.log(colorClass);
-        </script>
-
+        <div class="px-2 py-2">
+            <h1 class="font-bold text-base">4. Install GFCI Outlets</h1>
+            <p class="p-2 text-base">Breakers and GFCI receptacles are essential for home safety. They are especially
+                crucial in places with water, such as toilets, swimming pools, gardens, and garages. A functioning GFCI will
+                save someone from a serious electric shock or electrocution by identifying shorts, overloads, and ground
+                faults (an irregular path between the source of a current and a grounded surface), and protect dwellings
+                from electrical hazards by shutting off the power.</p>
+            <p class="p-2 text-base">GFCIs can help you avoid frequent trips of your circuit breakers while also protecting
+                you when utilizing energy in higher-risk locations like your bathrooms or kitchen.</p>
+        </div>
 
     </section>
+
+    <script src="{{ asset('js/amperetrip-results.js') }}"></script>
 @endsection
