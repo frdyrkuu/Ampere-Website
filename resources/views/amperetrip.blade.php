@@ -36,9 +36,14 @@
 
                         {{-- AMPERE TRIP  --}}
 
+                        @if ($errors->has('error'))
+                            <div class="text-red-500 text-xs font-semibold alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
+
                         <div class="mt-4 relative h-11 w-full min-w-[200px]">
-                            <input
-                                name="ampereTrip"
+                            <input name="ampereTrip"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " type="number" required />
                             <label
@@ -50,8 +55,7 @@
 
                         {{-- REAL CURRENT  --}}
                         <div class="relative h-11 w-full min-w-[200px]">
-                            <input
-                                name="realCurrent"
+                            <input name="realCurrent"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " type="number" required />
                             <label

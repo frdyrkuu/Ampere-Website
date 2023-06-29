@@ -36,6 +36,11 @@
 
                         {{-- POWER QUALITY --}}
                         <br>
+                        @if ($errors->has('error'))
+                            <div class="text-red-500 text-xs font-semibold alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
                         <p class="text-sm text-orange-500">Note: Values can be seen on SCB's Display</p>
                         <div class="mt-4 relative h-11 w-full min-w-[200px]">
                             <input name="powerQuality"

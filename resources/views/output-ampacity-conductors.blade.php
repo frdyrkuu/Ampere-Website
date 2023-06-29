@@ -117,7 +117,7 @@
                                 <div>
                                     <label for="percentage" class="pb-2 text-center w-full">Ampere Trip Percentage: </label>
                                     <input type="text" class="w-full bg-transparent text-6xl text-center"
-                                        value="{{ $percentage }}%" id="percentage" readonly required>
+                                        value="{{ $percentage }}" id="percentage" readonly required>
                                 </div>
                                 <div class="">
                                     {{-- ADD SOME COMMENT ABOUT THE RESULT HERE --}}
@@ -217,5 +217,66 @@
     </section>
 
 
-    <script src="{{ asset('js/ampacity-conductors-autofill.js') }}"></script>
+    <script>
+        const input = document.getElementById('percentage');
+
+        // Get the percentage value from the input element
+        const inputValue = input.value.replace(',', '');
+
+        const percentage = parseFloat(input.value);
+
+        // Determine the color class, condition, and image source based on the percentage value
+        let colorClass;
+        let condition;
+        let imageSource;
+
+        const numericPercentage = parseFloat(percentage.toFixed(3));
+
+        switch (true) {
+            case numericPercentage >= 81:
+                colorClass = 'text-red-500';
+                condition = 'Alert';
+                imageSource = '/image/alert.png';
+                break;
+            case numericPercentage >= 75 && numericPercentage <= 80:
+                colorClass = 'text-yellow-500';
+                condition = 'Neutral';
+                imageSource = '/image/neutral.png';
+                break;
+            case numericPercentage >= 0 && numericPercentage <= 74:
+                colorClass = 'text-green-500';
+                condition = 'Good';
+                imageSource = '/image/good.png';
+                break;
+            default:
+                colorClass = 'text-black';
+                condition = 'Unknown';
+                imageSource = '/image/good.png';
+                break;
+        }
+
+        // Add the color class to the input element
+        input.classList.add(colorClass);
+
+        // Get the condition element
+        const conditionElement = document.getElementById('condition');
+
+        // Add the color class to the condition element
+        conditionElement.classList.add(colorClass);
+
+        // Update the condition text content
+        conditionElement.textContent = condition;
+
+        // Get the condition image element
+        const conditionImageElement = document.getElementById('conditionImage');
+
+        // Set the image source
+        conditionImageElement.src = imageSource;
+        conditionImageElement.alt = condition;
+
+        // Update the input field value with the formatted percentage and %
+        input.value = numericPercentage.toFixed(3) + "%";
+
+        console.log(numericPercentage);
+    </script>
 @endsection

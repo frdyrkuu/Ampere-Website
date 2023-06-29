@@ -32,6 +32,11 @@
                             <option value="Monthly">Monthly</option>
                         </select>
 
+                        @if ($errors->has('error'))
+                            <div class="text-red-500 text-xs font-semibold alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
                         <div id="inputContainer" class="mt-2">
 
                             <div class="inputRow grid sm:flex gap-1 sm:gap-4 mt-4">

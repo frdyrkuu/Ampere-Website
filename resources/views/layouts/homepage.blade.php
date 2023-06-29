@@ -19,10 +19,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
-<body class="font-['Poppins'] hide-scrollbar flex flex-col min-h-[100vh]">
+<body class="font-['Poppins'] hide-scrollbar flex flex-col min-h-[100vh] h-screen">
     {{-- HEADER  --}}
     <header class="sticky top-0 z-10">
         <div class="bg-white rounded-2xl shadow">
@@ -54,12 +56,17 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item text-black" href=""
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item text-black" href="/home">
+                                    <i class="fa fa-home py-auto" aria-hidden="true"></i>
+                                    Home
+                                </a>
+                                <a class="dropdown-item text-black mt-3" href="/chart">
                                     <i class="fa fa-line-chart py-auto" aria-hidden="true"></i>
                                     Chart
+                                </a>
+                                <a class="dropdown-item text-black mt-3" href="">
+                                    <i class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                    Settings
                                 </a>
                                 <br>
                                 <hr class="">

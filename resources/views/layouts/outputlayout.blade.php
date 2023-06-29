@@ -55,11 +55,17 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item text-black" href=""
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item text-black" href="/home">
+                                    <i class="fa fa-home py-auto" aria-hidden="true"></i>
+                                    Home
+                                </a>
+                                <a class="dropdown-item text-black mt-3" href="/chart">
                                     <i class="fa fa-line-chart py-auto" aria-hidden="true"></i>
                                     Chart
+                                </a>
+                                <a class="dropdown-item text-black mt-3" href="">
+                                    <i class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                    Settings
                                 </a>
                                 <br>
                                 <hr class="">

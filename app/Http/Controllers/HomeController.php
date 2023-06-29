@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Models\UserData;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -42,11 +44,21 @@ class HomeController extends Controller
             'circuitNumber' => 'required',
             'ampereTrip' => 'required',
             'realCurrent' => 'required',
+
         ]);
+
+        $validator->after(function ($validator) use ($request) {
+            $ampereTrip = $request->input('ampereTrip');
+            $realCurrent = $request->input('realCurrent');
+
+            if ($ampereTrip == 0 || $realCurrent == 0) {
+                $validator->errors()->add('error', 'An Error occured.');
+            }
+        });
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            return redirect('amperetrip');
+            return redirect('amperetrip')->withErrors($validator);
         }
 
         // If validation passes, process the inputs and return the view
@@ -61,10 +73,38 @@ class HomeController extends Controller
         | AT = (Load Flowing (Real current))/(Ampere Trip Rating of the Circuit Breaker)
         |--------------------------------------------------------------------------
         */
-
+        $ampereTripCategory = "Ampere Trip";
         $ampereTrip_Results = $real_current / $ampere_trip;
-        $percentage = number_format($ampereTrip_Results * 100, 3);
-        $ampereTrip_Results = number_format($ampereTrip_Results, 3);
+        $percentage = $ampereTrip_Results * 100;
+        $ampereTrip_Results = sprintf("%.3f", $percentage);
+
+        // SAVE TO DATABASE USING FOREIGN KEY
+
+        if ($ampere_trip <= 0 || $real_current <= 0) {
+            return redirect('amperetrip')->withErrors(['error' => 'Negative numbers are not allowed.']);
+        } else {
+            $userId = auth()->user()->id;
+
+            // Check if the data already exists in the database
+            $existingData = UserData::where('user_id', $userId)
+                ->where('category', $ampereTripCategory)
+                ->where('output', $ampereTrip_Results)
+                ->first();
+
+            if ($existingData) {
+                // Data already exists, no need to save again
+                $userData = $existingData;
+            } else {
+                // Data doesn't exist, save to the database
+                $userData = new UserData();
+                $userData->user_id = $userId;
+                $userData->category = $ampereTripCategory;
+                $userData->ckt = $circuit_Number;
+                $userData->output = $ampereTrip_Results;
+                $userData->save();
+            }
+        }
+
 
         return view('output-amperetrip', [
             'circuitNumber' => $circuit_Number,
@@ -111,8 +151,36 @@ class HomeController extends Controller
         | Ampacity = (Load Flowing (real current))/(Wire size of the conductor used x number of sets)
         |--------------------------------------------------------------------------
         */
+
+        $ampacityCategory = "Ampacity of Conductors";
         $ampacity = $real_current / ($no_current * $number_sets);
-        $percentage = number_format($ampacity * 100, 3);
+        $percentage = $ampacity * 100;
+        $ampacityResult = sprintf("%.3f", $percentage);
+
+        if ($real_current <= 0) {
+            return redirect('ampacity-of-conductors')->withErrors(['error' => 'Real Current must be greater than 0']);
+        } else {
+            $userId = auth()->user()->id;
+
+            // Check if the data already exists in the database
+            $existingData = UserData::where('user_id', $userId)
+                ->where('category', $ampacityCategory)
+                ->where('output', $ampacityResult)
+                ->first();
+
+            if ($existingData) {
+                // Data already exists, no need to save again
+                $userData = $existingData;
+            } else {
+                // Data doesn't exist, save to the database
+                $userData = new UserData();
+                $userData->user_id = $userId;
+                $userData->category = $ampacityCategory;
+                $userData->ckt = $circuit_Number;
+                $userData->output = $ampacityResult;
+                $userData->save();
+            }
+        }
 
         return view('output-ampacity-conductors', [
             'circuitNumber' =>  $circuit_Number,
@@ -157,9 +225,40 @@ class HomeController extends Controller
 
         // Calculate the percentage
         $percentage = (1 - ($real_voltage / $voltage)) * 100;
-        $absoluteValue = abs($percentage);
-        $final_voltageDrop = number_format($absoluteValue, 3);
 
+        if ($percentage < 0) {
+            $percentage = 0;
+        }
+
+        $final_voltageDrop = sprintf("%.3f", $percentage);
+        $voltageDropCategory = "Voltage Drop";
+        $today = Carbon::today();
+
+        // SAVE TO DATABASE USING FOREIGN KEY
+        if ($real_voltage <= 0) {
+            return redirect('percentage-of-voltage')->withErrors(['error' => 'Real Current must be greater than 0']);
+        } else {
+            $userId = auth()->user()->id;
+
+            // Check if the data already exists in the database
+            $existingData = UserData::where('user_id', $userId)
+                ->where('created_at', $today)
+                ->where('output', $final_voltageDrop)
+                ->first();
+
+            if ($existingData) {
+                // Data already exists, no need to save again
+                $userData = $existingData;
+            } else {
+                // Data doesn't exist, save to the database
+                $userData = new UserData();
+                $userData->user_id = $userId;
+                $userData->category = $voltageDropCategory;
+                $userData->ckt = $circuit_Number;
+                $userData->output = $final_voltageDrop;
+                $userData->save();
+            }
+        }
 
         return view('output-voltage-drop', [
             'circuitNumber' => $circuit_Number,
@@ -189,6 +288,7 @@ class HomeController extends Controller
 
         // Determine the condition based on the power quality value
         $condition = '';
+        $powerQualityCategory = "Power Quality";
 
         if ($power_quality >= 0.010 && $power_quality <= 0.890) {
             $condition = 'Voltage Sag';
@@ -198,6 +298,42 @@ class HomeController extends Controller
             $condition = 'Voltage Swell';
         } else {
             $condition = 'Unknown Condition';
+        }
+
+
+        // SAVE TO DATABASE USING FOREIGN KEY
+
+        if ($power_quality <= 0) {
+            return redirect('power-quality')->withErrors(['error' => 'Power quality must be greater than 0']);
+        } else {
+            if ($condition == "Unknown Condition") {
+                return view('output-power-quality', [
+                    'circuitNumber' => $circuit_Number,
+                    'powerQuality' => $power_quality,
+                    'condition' => $condition,
+                ]);
+            } else {
+                $userId = auth()->user()->id;
+
+                // Check if the data already exists in the database
+                $existingData = UserData::where('user_id', $userId)
+                    ->where('created_at',)
+                    ->where('output', $power_quality)
+                    ->first();
+
+                if ($existingData) {
+                    // Data already exists, no need to save again
+                    $userData = $existingData;
+                } else {
+                    // Data doesn't exist, save to the database
+                    $userData = new UserData();
+                    $userData->user_id = $userId;
+                    $userData->category = $powerQualityCategory;
+                    $userData->ckt = $circuit_Number;
+                    $userData->output = $power_quality;
+                    $userData->save();
+                }
+            }
         }
 
         return view('output-power-quality', [
@@ -258,6 +394,10 @@ class HomeController extends Controller
                 'numberDuration' => $numberDuration,
                 'kWh' => $kWh,
             ];
+
+            if ($appWatts <= 0 || $numberAppliance <= 0 || $numberDuration <= 0) {
+                return redirect('energy-conservation')->withErrors(['error' => 'An error occurred.']);
+            }
         }
 
         $totalkWh = 0; // Initialize total number of appliances variable
@@ -266,12 +406,51 @@ class HomeController extends Controller
             $totalkWh += $row['kWh'];
         }
 
+        $today = Carbon::today();
+        $energyConservationCategory = "Energy Conservation";
+
+        $userId = auth()->user()->id;
+
+        // Check if the data already exists in the database
+        $existingData = UserData::where('user_id', $userId)
+            ->where('created_at', $today)
+            ->where('output', $totalkWh)
+            ->first();
+
+        if ($existingData) {
+            // Data already exists, no need to save again
+            $userData = $existingData;
+        } else {
+            // Data doesn't exist, save to the database
+            $userData = new UserData();
+            $userData->user_id = $userId;
+            $userData->category = $energyConservationCategory;
+            $userData->ckt = 0;
+            $userData->output = $totalkWh;
+            $userData->save();
+        }
+
 
         // Process the input data as needed
         return view('output-energy-conservation', [
             'inputData' => $inputData,
             'selectedTime' => $selectedDuration,
             'totalkWh' => $totalkWh,
+        ]);
+    }
+
+
+    // SHOW FOR THE CHART LIST DATA
+    public function showUserData()
+    {
+        $userId = auth()->user()->id;
+
+        $userData = UserData::where('user_id', $userId)
+            ->orderByDesc('category')
+            ->paginate(5);
+
+        return view('chart', [
+            'userData' => $userData,
         ]);
     }
 }

@@ -73,7 +73,7 @@
                                     <label for="percentage" class="pb-2 text-center w-full">Percentage of Voltage Drop:
                                     </label>
                                     <input type="text" class="w-full bg-transparent text-6xl text-center"
-                                        value="{{ $percentage }}%" id="percentage" readonly required>
+                                        value="{{ $percentage }}" id="percentage" readonly required>
                                 </div>
                                 <div class="">
                                     {{-- ADD SOME COMMENT ABOUT THE RESULT HERE --}}
@@ -169,7 +169,8 @@
 
             <p class="p-2 text-base">It should be remembered that the resistance rises by 0.3% for every degree the
                 temperature rises. The formula to be used:</p>
-            <p class="py-2 text-center font-serif text-2xl italic border w-1/2 mx-auto mt-2">R<sub>2</sub> = R<sub>1</sub> [1 + α(T<sub>2</sub> -
+            <p class="py-2 text-center font-serif text-2xl italic border w-1/2 mx-auto mt-2">R<sub>2</sub> = R<sub>1</sub>
+                [1 + α(T<sub>2</sub> -
                 T<sub>1</sub>)]</p>
             <p class="py-2 font-serif text-base">
                 Where,
@@ -181,10 +182,55 @@
                 <p>α = Coefficient of electrical resistance of Copper</p>
             </div>
 
-            <p class="py-2 text-base">As the difference between T<sub>2</sub> and T<sub>1</sub> decreases, the resistance to power ‘α ‘ will also cease to decrease.</p>
+            <p class="py-2 text-base">As the difference between T<sub>2</sub> and T<sub>1</sub> decreases, the resistance to
+                power ‘α ‘ will also cease to decrease.</p>
         </div>
     </section>
 
 
-    <script src="{{ asset('js/voltage-drop-results.js') }}"></script>
+    <script>
+        // Get the input element
+        const input = document.getElementById('percentage');
+
+        // Get the percentage value from the input element
+        const percentage = parseFloat(input.value);
+
+        // Determine the color class, condition, and image source based on the percentage value
+        let colorClass = 'text-green-500'; // Default to green
+        let condition = 'Good'; // Default condition
+        let imageSource = '/image/good.png'; // Default image source
+
+        if (percentage >= 3.1 && percentage <= 100) {
+            colorClass = 'text-red-500';
+            condition = 'Alert';
+            imageSource = '/image/alert.png';
+        } else if (percentage >= 0 && percentage <= 3) {
+            colorClass = 'text-green-500';
+            condition = 'Good';
+            imageSource = '/image/good.png';
+        }
+
+        // Add the color class to the input element
+        input.classList.add(colorClass);
+
+        // Get the condition element
+        const conditionElement = document.getElementById('condition');
+
+        // Add the color class to the condition element
+        conditionElement.classList.add(colorClass);
+
+        // Update the condition text content
+        conditionElement.textContent = condition;
+
+        // Get the condition image element
+        const conditionImageElement = document.getElementById('conditionImage');
+
+        // Set the image source
+        conditionImageElement.src = imageSource;
+        conditionImageElement.alt = condition;
+
+        input.value = percentage.toFixed(3) + "%";
+
+        console.log(percentage);
+    </script>
 @endsection

@@ -35,7 +35,12 @@
                             <option value="5">CKT NUMBER 5</option>
                         </select>
 
-                        {{-- REAL CURRENT  --}}
+                        @if ($errors->has('error'))
+                            <div class="text-red-500 text-xs font-semibold alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
+                        {{-- REAL Voltage  --}}
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input name="realVoltage"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"

@@ -46,6 +46,8 @@ Route::match(['post', 'get'], '/power-quality/results', [HomeController::class, 
 Route::match(['post', 'get'], '/energy-conservation/results', [HomeController::class, 'energyConservation'])
     ->name('output-energy-conservation');
 
+Route::match(['post', 'get'], '/chart', [HomeController::class, 'showUserData'])
+    ->name('chart');
 // Route::post('/energy-conservation/results', [HomeController::class, 'energyConservation'])
 //     ->name('output-energy-conservation');
 
