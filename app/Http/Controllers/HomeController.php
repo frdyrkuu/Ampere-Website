@@ -484,7 +484,7 @@ class HomeController extends Controller
             ->where('category', "Energy Conservation")
             ->pluck('output');
 
-        $ECOutputFinal = $PFOutput->toArray();
+        $ECOutputFinal = $ECOutput->toArray();
 
         return view('chart', [
             'userData' => $userData,
