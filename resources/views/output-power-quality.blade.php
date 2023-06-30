@@ -45,8 +45,13 @@
                     </div>
                 </div>
             </article>
-            <div class="w-1/2 sm:w-6/12 animate-reveal mb-5">
-                <img class="w-9/12 m-auto sm:m-none object-cover animate-floating" src="/image/picture.png" alt="burger">
+            <div class="w-1/2 sm:w-full h-full animate-reveal mb-5">
+                {{-- <img class="w-9/12 m-auto sm:m-none object-cover animate-floating" src="/image/picture.png" alt="burger"> --}}
+
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <!-- Card content for column 4 -->
+                    <canvas id="lineChart_PowerQuality"></canvas>
+                </div>
             </div>
 
         </div>
@@ -81,4 +86,10 @@
         </div>
 
     </section>
+
+    <script>
+        var PFOutputData = {!! json_encode($PFOutputFinal) !!};
+    </script>
+
+    <script src="{{ asset('js/view-powerquality_chart.js') }}"></script>
 @endsection

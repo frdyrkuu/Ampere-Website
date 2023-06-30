@@ -271,22 +271,17 @@ class HomeController extends Controller
     // FUNCTION FOR POWER QUALITY
     public function powerQuality(Request $request)
     {
-        // ADD FUNCTION HERE
         $validator = Validator::make($request->all(), [
             'circuitNumber' => 'required',
             'powerQuality' => 'required',
         ]);
 
-        // If validation fails, redirect back with error messages
         if ($validator->fails()) {
             return redirect('power-quality');
         }
 
-
         $circuit_Number = $request->input('circuitNumber');
         $power_quality = $request->input('powerQuality');
-
-        // Determine the condition based on the power quality value
         $condition = '';
         $powerQualityCategory = "Power Quality";
 
@@ -300,9 +295,6 @@ class HomeController extends Controller
             $condition = 'Unknown Condition';
         }
 
-
-        // SAVE TO DATABASE USING FOREIGN KEY
-
         if ($power_quality <= 0) {
             return redirect('power-quality')->withErrors(['error' => 'Power quality must be greater than 0']);
         } else {
@@ -311,21 +303,18 @@ class HomeController extends Controller
                     'circuitNumber' => $circuit_Number,
                     'powerQuality' => $power_quality,
                     'condition' => $condition,
+                    'PFOutputFinal' => [], // Initialize the variable here
                 ]);
             } else {
                 $userId = auth()->user()->id;
-
-                // Check if the data already exists in the database
                 $existingData = UserData::where('user_id', $userId)
                     ->where('created_at',)
                     ->where('output', $power_quality)
                     ->first();
 
                 if ($existingData) {
-                    // Data already exists, no need to save again
                     $userData = $existingData;
                 } else {
-                    // Data doesn't exist, save to the database
                     $userData = new UserData();
                     $userData->user_id = $userId;
                     $userData->category = $powerQualityCategory;
@@ -336,12 +325,21 @@ class HomeController extends Controller
             }
         }
 
+        $userId = auth()->user()->id;
+        $PFOutput = UserData::where('user_id', $userId)
+            ->where('category', "Power Quality")
+            ->pluck('output');
+
+        $PFOutputFinal = $PFOutput->toArray();
+
         return view('output-power-quality', [
             'circuitNumber' => $circuit_Number,
             'powerQuality' => $power_quality,
             'condition' => $condition,
+            'PFOutputFinal' => $PFOutputFinal,
         ]);
     }
+
 
     // FUNCTION FOR ENERGY CONSERVATION
     public function energyConservation(Request $request)
@@ -449,8 +447,52 @@ class HomeController extends Controller
             ->orderByDesc('category')
             ->paginate(5);
 
+
+        // AMPERETRIP DATA TO ARRAY
+        $AmpereTripOutput = UserData::where('user_id', $userId)
+            ->where('category', "Ampere Trip")
+            ->pluck('output');
+
+        $AmpereTripOutputFinal = $AmpereTripOutput->toArray();
+
+
+        // AMPACITY DATA TO ARRAY
+        $AmpacityOutput = UserData::where('user_id', $userId)
+            ->where('category', "Ampacity of Conductors")
+            ->pluck('output');
+
+        $AmpacityOutputFinal = $AmpacityOutput->toArray();
+
+        // VOLTAGE DROP
+        $VDOutput = UserData::where('user_id', $userId)
+            ->where('category', "Voltage Drop")
+            ->pluck('output');
+
+        $VDOutputFinal = $VDOutput->toArray();
+
+
+        // Power Quality
+        $PFOutput = UserData::where('user_id', $userId)
+            ->where('category', "Power Quality")
+            ->pluck('output');
+
+        $PFOutputFinal = $PFOutput->toArray();
+
+
+        // Energy Conservation
+        $ECOutput = UserData::where('user_id', $userId)
+            ->where('category', "Energy Conservation")
+            ->pluck('output');
+
+        $ECOutputFinal = $PFOutput->toArray();
+
         return view('chart', [
             'userData' => $userData,
+            'AmpereTripOutput' => $AmpereTripOutputFinal,
+            'AmpacityOutput' => $AmpacityOutputFinal,
+            'VDOutput' => $VDOutputFinal,
+            'PFOutput' => $PFOutputFinal,
+            'ECOutput' => $ECOutputFinal,
         ]);
     }
 }
