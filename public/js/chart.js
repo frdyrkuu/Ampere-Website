@@ -4,6 +4,7 @@ const data_VoltageDrop = VDOutputData;
 const data_PowerQuality = PFOutputData;
 const data_EnergyConservation = ECOutputData;
 
+
 let width, height, gradient;
 
 function getGradient(ctx, chartArea) {
@@ -27,9 +28,9 @@ function getGradient(ctx, chartArea) {
 const ampereTripChart = {
     type: 'line',
     data: {
-        labels: data_AmpereTrip.map((_, index) => `Input ${index + 1}`),
+        labels: data_AmpereTrip.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Ampere Trip',
+            label: 'Ampere Trip',
             data: data_AmpereTrip,
             borderColor: function (context) {
                 const chart = context.chart;
@@ -50,17 +51,26 @@ const ampereTripChart = {
             legend: {
                 position: 'top',
             },
-        }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                    stepSize: 10,
+                },
+            },
+        },
     }
 };
 
-// ampacityChart
+// ampereTripChart
 const ampacityChart = {
     type: 'line',
     data: {
-        labels: data_Ampacity.map((_, index) => `Input ${index + 1}`),
+        labels: data_Ampacity.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Ampacity of Conductors',
+            label: 'Ampacity of Conductors',
             data: data_Ampacity,
             borderColor: function (context) {
                 const chart = context.chart;
@@ -81,18 +91,28 @@ const ampacityChart = {
             legend: {
                 position: 'top',
             },
-        }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                    stepSize: 10,
+                },
+            },
+        },
     }
 };
+
 
 
 // voltageDropChart
 const voltageDropChart = {
     type: 'line',
     data: {
-        labels: data_VoltageDrop.map((_, index) => `Input ${index + 1}`),
+        labels: data_VoltageDrop.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Voltage Drop Percentage',
+            label: 'Voltage Drop Percentage',
             data: data_VoltageDrop,
             borderColor: function (context) {
                 const chart = context.chart;
@@ -113,19 +133,31 @@ const voltageDropChart = {
             legend: {
                 position: 'top',
             },
-        }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                    stepSize: 10,
+                },
+                color: function (context) {
+                    const value = context.tick.value;
+                    return value <= 3 ? 'green' : 'red';
+                },
+            },
+        },
     }
 };
-
 
 
 // POWER QUALITY
 const powerQualityChart = {
     type: 'line',
     data: {
-        labels: data_PowerQuality.map((_, index) => `Input ${index + 1}`),
+        labels: data_PowerQuality.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Power Quality',
+            label: 'Power Quality',
             data: data_PowerQuality,
             borderColor: function (context) {
                 const chart = context.chart;
@@ -146,31 +178,29 @@ const powerQualityChart = {
             legend: {
                 position: 'top',
             },
-        }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 3,
+                ticks: {
+                    stepSize: 1,
+                },
+            },
+        },
     }
 };
 
 
-
-// Energy Conservation
+// energyConservationChart
 const energyConservationChart = {
     type: 'line',
     data: {
-        labels: data_EnergyConservation.map((_, index) => `Input ${index + 1}`),
+        labels: data_EnergyConservation.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Energy Conservation kwH',
+            label: 'Energy Conservation kwH',
             data: data_EnergyConservation,
-            borderColor: function (context) {
-                const chart = context.chart;
-                const { ctx, chartArea } = chart;
-
-                if (!chartArea) {
-                    // This case happens on initial chart load
-                    return;
-                }
-
-                return getGradient(ctx, chartArea);
-            },
+            borderColor: 'green',
         }]
     },
     options: {
@@ -182,6 +212,7 @@ const energyConservationChart = {
         }
     }
 };
+
 
 const lineChart1 = new Chart(document.getElementById('lineChart_AmpereTrip'), ampereTripChart);
 const lineChart2 = new Chart(document.getElementById('lineChart_AmpacityConductors'), ampacityChart);

@@ -85,24 +85,13 @@ class HomeController extends Controller
         } else {
             $userId = auth()->user()->id;
 
-            // Check if the data already exists in the database
-            $existingData = UserData::where('user_id', $userId)
-                ->where('category', $ampereTripCategory)
-                ->where('output', $ampereTrip_Results)
-                ->first();
-
-            if ($existingData) {
-                // Data already exists, no need to save again
-                $userData = $existingData;
-            } else {
-                // Data doesn't exist, save to the database
-                $userData = new UserData();
-                $userData->user_id = $userId;
-                $userData->category = $ampereTripCategory;
-                $userData->ckt = $circuit_Number;
-                $userData->output = $ampereTrip_Results;
-                $userData->save();
-            }
+            // Data doesn't exist, save to the database
+            $userData = new UserData();
+            $userData->user_id = $userId;
+            $userData->category = $ampereTripCategory;
+            $userData->ckt = $circuit_Number;
+            $userData->output = $ampereTrip_Results;
+            $userData->save();
         }
 
 
@@ -162,24 +151,13 @@ class HomeController extends Controller
         } else {
             $userId = auth()->user()->id;
 
-            // Check if the data already exists in the database
-            $existingData = UserData::where('user_id', $userId)
-                ->where('category', $ampacityCategory)
-                ->where('output', $ampacityResult)
-                ->first();
-
-            if ($existingData) {
-                // Data already exists, no need to save again
-                $userData = $existingData;
-            } else {
-                // Data doesn't exist, save to the database
-                $userData = new UserData();
-                $userData->user_id = $userId;
-                $userData->category = $ampacityCategory;
-                $userData->ckt = $circuit_Number;
-                $userData->output = $ampacityResult;
-                $userData->save();
-            }
+            // Data doesn't exist, save to the database
+            $userData = new UserData();
+            $userData->user_id = $userId;
+            $userData->category = $ampacityCategory;
+            $userData->ckt = $circuit_Number;
+            $userData->output = $ampacityResult;
+            $userData->save();
         }
 
         return view('output-ampacity-conductors', [
@@ -285,11 +263,11 @@ class HomeController extends Controller
         $condition = '';
         $powerQualityCategory = "Power Quality";
 
-        if ($power_quality >= 0.010 && $power_quality <= 0.890) {
+        if ($power_quality >= 0.010 || $power_quality <= 0.890) {
             $condition = 'Voltage Sag';
-        } elseif ($power_quality >= 0.900 && $power_quality <= 1.000) {
+        } elseif ($power_quality >= 0.900 || $power_quality <= 1.000) {
             $condition = 'Safe Condition';
-        } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
+        } elseif ($power_quality >= 1.010 || $power_quality <= 1.990) {
             $condition = 'Voltage Swell';
         } else {
             $condition = 'Unknown Condition';
@@ -381,9 +359,9 @@ class HomeController extends Controller
             } elseif ($selectedDuration === 'Monthly') {
                 $kWh = ($appWatts * $numberAppliance * $numberDuration * 30) / 1000;
             } else {
-
                 $kWh = 0;
             }
+
 
             $inputData[] = [
                 'applianceName' => $applianceNames[$i],
@@ -397,6 +375,7 @@ class HomeController extends Controller
                 return redirect('energy-conservation')->withErrors(['error' => 'An error occurred.']);
             }
         }
+
 
         $totalkWh = 0; // Initialize total number of appliances variable
 
@@ -439,7 +418,7 @@ class HomeController extends Controller
 
 
     // SHOW FOR THE CHART LIST DATA
-    public function showUserData()
+    public function showUserData(Request $request)
     {
         $userId = auth()->user()->id;
 
@@ -447,10 +426,15 @@ class HomeController extends Controller
             ->orderByDesc('category')
             ->paginate(5);
 
+        $cktValues = 1; // Initial value of cktValues
 
-        // AMPERETRIP DATA TO ARRAY
+        if ($request->has('circuitNumber')) {
+            $cktValues = $request->input('circuitNumber');
+        }
+
         $AmpereTripOutput = UserData::where('user_id', $userId)
-            ->where('category', "Ampere Trip")
+            ->where('category', 'Ampere Trip')
+            ->where('ckt', $cktValues)
             ->pluck('output');
 
         $AmpereTripOutputFinal = $AmpereTripOutput->toArray();
@@ -459,6 +443,7 @@ class HomeController extends Controller
         // AMPACITY DATA TO ARRAY
         $AmpacityOutput = UserData::where('user_id', $userId)
             ->where('category', "Ampacity of Conductors")
+            ->where('ckt', $cktValues)
             ->pluck('output');
 
         $AmpacityOutputFinal = $AmpacityOutput->toArray();
@@ -466,6 +451,7 @@ class HomeController extends Controller
         // VOLTAGE DROP
         $VDOutput = UserData::where('user_id', $userId)
             ->where('category', "Voltage Drop")
+            ->where('ckt', $cktValues)
             ->pluck('output');
 
         $VDOutputFinal = $VDOutput->toArray();
@@ -474,6 +460,7 @@ class HomeController extends Controller
         // Power Quality
         $PFOutput = UserData::where('user_id', $userId)
             ->where('category', "Power Quality")
+            ->where('ckt', $cktValues)
             ->pluck('output');
 
         $PFOutputFinal = $PFOutput->toArray();
@@ -482,6 +469,7 @@ class HomeController extends Controller
         // Energy Conservation
         $ECOutput = UserData::where('user_id', $userId)
             ->where('category', "Energy Conservation")
+            ->where('ckt', $cktValues)
             ->pluck('output');
 
         $ECOutputFinal = $ECOutput->toArray();
@@ -493,6 +481,7 @@ class HomeController extends Controller
             'VDOutput' => $VDOutputFinal,
             'PFOutput' => $PFOutputFinal,
             'ECOutput' => $ECOutputFinal,
+            'cktnumber' => $cktValues,
         ]);
     }
 }

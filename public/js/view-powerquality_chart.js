@@ -1,7 +1,6 @@
 
 const data_PowerQuality = PFOutputData;
 
-
 let width, height, gradient;
 
 function getGradient(ctx, chartArea) {
@@ -25,7 +24,7 @@ function getGradient(ctx, chartArea) {
 const powerQualityChart = {
     type: 'line',
     data: {
-        labels: data_PowerQuality.map((_, index) => `Input ${index + 1}`),
+        labels: data_PowerQuality.map((_, index) => `${index + 1}`),
         datasets: [{
             label: 'Dataset Power Quality',
             data: data_PowerQuality,

@@ -44,7 +44,7 @@
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input name="realVoltage"
                                 class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                placeholder=" " type="number" required />
+                                placeholder=" " type="number" step="0.001" required />
                             <label
                                 class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                                 Real Voltage [V]
@@ -52,18 +52,24 @@
                         </div>
 
                         {{-- VOLTS --}}
-                        <label for="circuit"
+                        {{-- <label for="circuit"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voltage</label>
                         <select id="circuit" name="voltage"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                             required>
-                            <option value="" disabled selected required>Volts</option>
-                            <option value="220">220</option>
                             <option value="230">230</option>
-                            <option value="240">240</option>
-                        </select>
+                        </select> --}}
                         {{-- BUTTON PROCEED TO RESULTS --}}
 
+                        <div class="relative h-11 w-full min-w-[200px]">
+                            <input name="voltage"
+                                class="peer h-full p-2 w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-yellow-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                placeholder=" " type="number" value="230"/>
+                            <label
+                                class="text-gray-500 after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-yellow-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-yellow-500 peer-focus:after:scale-x-100 peer-focus:after:border-yellow-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                Volts [V]
+                            </label>
+                        </div>
                         <button type="submit"
                             class="w-full text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">&#8594
                             Proceed to Results</button>

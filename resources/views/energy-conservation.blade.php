@@ -28,7 +28,7 @@
                         <select id="appliance" name="selectedTime"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full sm:w-1/4 p-2.5"
                             required>
-                            <option value="Dailies">Dailies</option>
+                            <option value="Dailies">Daily</option>
                             <option value="Monthly">Monthly</option>
                         </select>
 
