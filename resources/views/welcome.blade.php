@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="/style.css">
 
+    <link rel="stylesheet" href="/style.css">
     <title>ACS PRO-TECH</title>
 
     <!-- Fonts -->
@@ -14,7 +13,8 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <script src="{{ asset('build/assets/app-7e506d02.js') }}"></script>
 </head>
 
 <body class="antialiased font-['Poppins'] flex flex-col min-h-[100vh]">
