@@ -190,34 +190,30 @@ class GuestController extends Controller
         $power_quality = $request->input('powerQuality');
         $condition = '';
 
-        if ($power_quality >= 0.010 || $power_quality <= 0.890) {
+        if ($power_quality >= 0.010 && $power_quality <= 0.890) {
             $condition = 'Voltage Sag';
-        } elseif ($power_quality >= 0.900 || $power_quality <= 1.000) {
+        } elseif ($power_quality >= 0.900 && $power_quality <= 1.000) {
             $condition = 'Safe Condition';
-        } elseif ($power_quality >= 1.010 || $power_quality <= 1.990) {
+        } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
             $condition = 'Voltage Swell';
         } else {
             $condition = 'Unknown Condition';
         }
 
-        if ($power_quality <= 0) {
-            return redirect('power-quality')->withErrors(['error' => 'Power quality must be greater than 0']);
-        } else {
-            if ($condition == "Unknown Condition") {
-                return view('output-power-quality', [
-                    'circuitNumber' => $circuit_Number,
-                    'powerQuality' => $power_quality,
-                    'condition' => $condition,
-                    'PFOutputFinal' => [], // Initialize the variable here
-                ]);
-            } else {
 
-                return view('guest_powerquality-output', [
-                    'circuitNumber' => $circuit_Number,
-                    'powerQuality' => $power_quality,
-                    'condition' => $condition,
-                ]);
-            }
+
+        if ($power_quality > 2) {
+            return redirect('/power-quality/guest')->withErrors(['error' => 'Power quality must not be greater than 2']);
+        }
+        if ($power_quality <= 0) {
+            return redirect('/power-quality/guest')->withErrors(['error' => 'Invalid Power Quality']);
+        } else {
+
+            return view('guest_powerquality-output', [
+                'circuitNumber' => $circuit_Number,
+                'powerQuality' => $power_quality,
+                'condition' => $condition,
+            ]);
         }
     }
 

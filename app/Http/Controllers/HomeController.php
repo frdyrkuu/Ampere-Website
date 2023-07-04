@@ -263,18 +263,18 @@ class HomeController extends Controller
         $condition = '';
         $powerQualityCategory = "Power Quality";
 
-        if ($power_quality >= 0.010 || $power_quality <= 0.890) {
+        if ($power_quality >= 0.010 && $power_quality <= 0.890) {
             $condition = 'Voltage Sag';
-        } elseif ($power_quality >= 0.900 || $power_quality <= 1.000) {
+        } elseif ($power_quality >= 0.900 && $power_quality <= 1.000) {
             $condition = 'Safe Condition';
-        } elseif ($power_quality >= 1.010 || $power_quality <= 1.990) {
+        } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
             $condition = 'Voltage Swell';
         } else {
             $condition = 'Unknown Condition';
         }
 
-        if ($power_quality > 1) {
-            return redirect('power-quality')->withErrors(['error' => 'Power quality must not be greater than 1']);
+        if ($power_quality > 2) {
+            return redirect('power-quality')->withErrors(['error' => 'Power quality must not be greater than 2']);
         } else {
             if ($power_quality <= 0) {
                 return redirect('power-quality')->withErrors(['error' => 'Power quality must not be equal to 0']);

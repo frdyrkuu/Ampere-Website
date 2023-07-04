@@ -182,7 +182,10 @@ const powerQualityChart = {
                     } else if (value >= 0.85 && value <= 1) {
                         return 'green';
                     }
+                    else if (value >= 1.010 && value <= 1.990) {
+                        return 'red';
                     }
+                }
             }
         }]
     },

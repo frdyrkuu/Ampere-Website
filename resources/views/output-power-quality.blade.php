@@ -70,9 +70,7 @@
 
     <section class="max-w-7xl mx-auto p-6">
 
-        <h2 class="text-gray-700 text-2xl font-semibold">
-            How to improve the Power Factor?
-        </h2>
+
         <div id="tips-container">
 
         </div>
@@ -114,7 +112,11 @@
         var tip = "";
 
         if (usercount === 1 || usercount === 2) {
-            tip = `<div class="gap-2 mt-2 sm:text-lg text-md mb-5">
+            tip = `
+            <h2 class="text-gray-700 text-2xl font-semibold">
+            How to improve the Power Factor?
+            </h2>
+            <div class="gap-2 mt-2 sm:text-lg text-md mb-5">
                 <p class="font-bold">Option A: Add a capacitor bank (capacitors in parallel) with the connected motor or
                     lighting circuits. It may also be used at the equipment,
                     distribution board, or installation's starting point. </p>
@@ -149,7 +151,11 @@
 
         } else if (usercount === 3) {
 
-            tip = `<div class="gap-2 mt-2 sm:text-lg text-md mb-5">
+            tip = `
+            <h2 class="text-gray-700 text-2xl font-semibold">
+            How to improve the Power Factor?
+            </h2>
+            <div class="gap-2 mt-2 sm:text-lg text-md mb-5">
                 <p class="font-bold">Option A: Add a capacitor bank (capacitors in parallel) with the connected motor or
                     lighting circuits. It may also be used at the equipment,
                     distribution board, or installation's starting point. </p>
@@ -195,7 +201,11 @@
 
         } else if (usercount === 4) {
 
-            tip = `<div class="gap-2 mt-2 sm:text-lg text-md mb-5">
+            tip = `
+            <h2 class="text-gray-700 text-2xl font-semibold">
+            How to improve the Power Factor?
+            </h2>
+            <div class="gap-2 mt-2 sm:text-lg text-md mb-5">
                 <p class="font-bold">Option A: Add a capacitor bank (capacitors in parallel) with the connected motor or
                     lighting circuits. It may also be used at the equipment,
                     distribution board, or installation's starting point. </p>
@@ -253,6 +263,9 @@
 
         } else if (usercount > 4) {
             tip = `
+            <h2 class="text-gray-700 text-2xl font-semibold">
+            How to improve the Power Factor?
+            </h2>
             <div class="gap-2 mt-2 sm:text-lg text-md mb-5">
                 <p class="font-bold">Option A: Add a capacitor bank (capacitors in parallel) with the connected motor or
                     lighting circuits. It may also be used at the equipment,
