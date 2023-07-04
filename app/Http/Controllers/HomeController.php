@@ -273,48 +273,57 @@ class HomeController extends Controller
             $condition = 'Unknown Condition';
         }
 
-        if ($power_quality <= 0) {
-            return redirect('power-quality')->withErrors(['error' => 'Power quality must be greater than 0']);
+        if ($power_quality > 1) {
+            return redirect('power-quality')->withErrors(['error' => 'Power quality must not be greater than 1']);
         } else {
-            if ($condition == "Unknown Condition") {
-                return view('output-power-quality', [
-                    'circuitNumber' => $circuit_Number,
-                    'powerQuality' => $power_quality,
-                    'condition' => $condition,
-                    'PFOutputFinal' => [], // Initialize the variable here
-                ]);
+            if ($power_quality <= 0) {
+                return redirect('power-quality')->withErrors(['error' => 'Power quality must not be equal to 0']);
             } else {
-                $userId = auth()->user()->id;
-                $existingData = UserData::where('user_id', $userId)
-                    ->where('created_at',)
-                    ->where('output', $power_quality)
-                    ->first();
-
-                if ($existingData) {
-                    $userData = $existingData;
+                if ($condition == "Unknown Condition") {
+                    return view('output-power-quality', [
+                        'circuitNumber' => $circuit_Number,
+                        'powerQuality' => $power_quality,
+                        'condition' => $condition,
+                        'PFOutputFinal' => [], // Initialize the variable here
+                    ]);
                 } else {
-                    $userData = new UserData();
-                    $userData->user_id = $userId;
-                    $userData->category = $powerQualityCategory;
-                    $userData->ckt = $circuit_Number;
-                    $userData->output = $power_quality;
-                    $userData->save();
+                    $userId = auth()->user()->id;
+                    $existingData = UserData::where('user_id', $userId)
+                        ->where('created_at',)
+                        ->where('output', $power_quality)
+                        ->first();
+
+                    if ($existingData) {
+                        $userData = $existingData;
+                    } else {
+                        $userData = new UserData();
+                        $userData->user_id = $userId;
+                        $userData->category = $powerQualityCategory;
+                        $userData->ckt = $circuit_Number;
+                        $userData->output = $power_quality;
+                        $userData->save();
+                    }
                 }
             }
+
+            $userId = auth()->user()->id;
+            $PFOutput = UserData::where('user_id', $userId)
+                ->where('category', "Power Quality")
+                ->where('ckt', $circuit_Number)
+                ->pluck('output');
+
+            $PFOutputFinal = $PFOutput->toArray();
+
+            $userCountData = count($PFOutputFinal);
         }
 
-        $userId = auth()->user()->id;
-        $PFOutput = UserData::where('user_id', $userId)
-            ->where('category', "Power Quality")
-            ->pluck('output');
-
-        $PFOutputFinal = $PFOutput->toArray();
 
         return view('output-power-quality', [
             'circuitNumber' => $circuit_Number,
             'powerQuality' => $power_quality,
             'condition' => $condition,
             'PFOutputFinal' => $PFOutputFinal,
+            'usercountdata' => $userCountData,
         ]);
     }
 

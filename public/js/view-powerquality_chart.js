@@ -3,19 +3,13 @@ const data_PowerQuality = PFOutputData;
 
 let width, height, gradient;
 
-function getGradient(ctx, chartArea) {
+function getGradientpower(ctx, chartArea) {
     const chartWidth = chartArea.right - chartArea.left;
     const chartHeight = chartArea.bottom - chartArea.top;
-    if (!gradient || width !== chartWidth || height !== chartHeight) {
-        // Create the gradient because this is either the first render
-        // or the size of the chart has changed
-        width = chartWidth;
-        height = chartHeight;
-        gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-        gradient.addColorStop(0, 'green');
-        gradient.addColorStop(0.5, 'yellow');
-        gradient.addColorStop(1, 'red');
-    }
+    const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0.5, 'green');
+    //    gradient.addColorStop(0, 'yellow');
+    gradient.addColorStop(0, 'red');
 
     return gradient;
 }
@@ -24,21 +18,23 @@ function getGradient(ctx, chartArea) {
 const powerQualityChart = {
     type: 'line',
     data: {
-        labels: data_PowerQuality.map((_, index) => `${index + 1}`),
+        labels: data_PowerQuality.map((_, index) => `Day ${index + 1}`),
         datasets: [{
-            label: 'Dataset Power Quality',
+            label: 'Power Quality',
             data: data_PowerQuality,
-            borderColor: function (context) {
-                const chart = context.chart;
-                const { ctx, chartArea } = chart;
+            segment: {
+                borderColor: (ctx) => {
+                    const currentY = ctx.p0.parsed.y;
+                    const previousY = ctx.p1.parsed.y;
 
-                if (!chartArea) {
-                    // This case happens on initial chart load
-                    return;
-                }
-
-                return getGradient(ctx, chartArea);
-            },
+                    const value = ctx.p0.parsed.y;
+                    if (value >= 0 && value <= 0.8499) {
+                        return 'red';
+                    } else if (value >= 0.85 && value <= 1) {
+                        return 'green';
+                    }
+                    }
+            }
         }]
     },
     options: {
@@ -47,9 +43,10 @@ const powerQualityChart = {
             legend: {
                 position: 'top',
             },
-        }
+        },
     }
 };
+
 
 const lineChart4 = new Chart(document.getElementById('lineChart_PowerQuality'), powerQualityChart);
 

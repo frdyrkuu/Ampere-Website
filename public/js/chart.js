@@ -24,6 +24,18 @@ function getGradient(ctx, chartArea) {
     return gradient;
 }
 
+
+function getGradientpower(ctx, chartArea) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, 'green');
+    //    gradient.addColorStop(0, 'yellow');
+    gradient.addColorStop(0.5, 'red');
+
+    return gradient;
+}
+
 // ampereTripChart
 const ampereTripChart = {
     type: 'line',
@@ -159,17 +171,19 @@ const powerQualityChart = {
         datasets: [{
             label: 'Power Quality',
             data: data_PowerQuality,
-            borderColor: function (context) {
-                const chart = context.chart;
-                const { ctx, chartArea } = chart;
+            segment: {
+                borderColor: (ctx) => {
+                    const currentY = ctx.p0.parsed.y;
+                    const previousY = ctx.p1.parsed.y;
 
-                if (!chartArea) {
-                    // This case happens on initial chart load
-                    return;
-                }
-
-                return getGradient(ctx, chartArea);
-            },
+                    const value = ctx.p0.parsed.y;
+                    if (value >= 0 && value <= 0.8499) {
+                        return 'red';
+                    } else if (value >= 0.85 && value <= 1) {
+                        return 'green';
+                    }
+                    }
+            }
         }]
     },
     options: {
@@ -177,15 +191,6 @@ const powerQualityChart = {
         plugins: {
             legend: {
                 position: 'top',
-            },
-        },
-        scales: {
-            y: {
-                min: 0,
-                max: 3,
-                ticks: {
-                    stepSize: 1,
-                },
             },
         },
     }
