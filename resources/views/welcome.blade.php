@@ -96,7 +96,7 @@
                 <br>
 
                 <div class="flex justify-center md:justify-start">
-                    <a href="/home"
+                    <a href="/welcome/guest"
                         class="bg-orange-500 p-2  rounded-xl text-white font-semibold shadow-xl transition duration-500 hover:scale-110 px-6 mx-4 border-b-4 border border-orange-700">Let's
                         Get Started</a>
                 </div>
