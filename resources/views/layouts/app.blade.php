@@ -26,56 +26,92 @@
 
     {{-- HEADER  --}}
     <header class="sticky top-0 z-10">
-        <div class="bg-white rounded-2xl shadow">
-            <div class="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-24">
-                    <div class="flex">
-                        <a href="/" class="flex-shrink-0 flex items-center">
-                            <img class="h-14 w-14 rounded-full" src="image/icon.png" alt="ACS-LOGO">
-                            <span class="text-orange-500 text-2xl ml-2 font-extrabold">ACS PRO-TECH</span>
-                        </a>
-                    </div>
-                    <div class="hidden md:flex items-center">
-                        <a href="#"
-                            class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">About</a>
-                        <a href="#"
-                            class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md  font-medium">Contact</a>
-                        @guest
-                            @if (Route::has('login'))
-                            @endif
-
-                            @if (Route::has('register'))
-                            @endif
-                        @else
-                            <p class="text-gray-700 text-sm mr-4">|</p>
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+        <section>
+            <div class="bg-white rounded-2xl shadow">
+                <div class="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-24">
+                        <div class="flex">
+                            <a href="/" class="flex-shrink-0 flex items-center">
+                                <img class="h-14 w-14 rounded-full" src="image/icon.png" alt="ACS-LOGO">
+                                <span class="text-orange-500 text-2xl ml-2 font-extrabold">ACS PRO-TECH</span>
                             </a>
+                        </div>
+                        <div class="hidden md:flex items-center">
+                            <a href="#"
+                                class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">About</a>
+                            <a href="#"
+                                class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md  font-medium">Contact</a>
+                            @guest
+                                @if (Route::has('login'))
+                                @endif
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-black" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                @if (Route::has('register'))
+                                @endif
+                            @else
+                                <p class="text-gray-700 text-sm mr-4">|</p>
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-black" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                        @endguest
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
 
+                            @endguest
+
+                        </div>
+
+                        <button onclick="showHamburger()"
+                            class="text-3xl md:hidden cursor-pointer text-black font-extrabold">
+                            ☰
+                        </button>
                     </div>
-
-                    <button onclick="hamburger()" class="text-3xl md:hidden cursor-pointer text-black font-extrabold">
-                        ☰
-                    </button>
                 </div>
             </div>
-        </div>
+        </section>
+
+
+        {{-- HAMBURGE SHOW --}}
+        <section id="hamburger"
+            class="bg-white w-1/2 text-center right-1 rounded-2xl shadow-md shadow-bottom-2xl border border-gray-300 -mt-5 absolute hidden lg:hidden">
+            <nav>
+                <div class="">
+                    <div class="text-gray-700 px-2 pt-4 pb-3 space-y-1 sm:px-3">
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ url('/home') }}"
+                                    class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Home</a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Login</a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}"
+                                        class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Register</a>
+                                @endif
+                            @endauth
+                        @endif
+
+                        <a href="#"
+                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Contact</a>
+                        <a href="#"
+                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">About
+                            Us</a>
+
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </section>
     </header>
     {{-- END HEADER --}}
 
@@ -111,6 +147,9 @@
                     class="hover:underline">ACS PRO-TECH™</a>. All Rights Reserved.</span>
         </div>
     </footer>
+
+
+    <script src="{{ asset('/js/hamburger.js') }}"></script>
 </body>
 
 </html>

@@ -29,20 +29,83 @@
 
     {{-- HEADER  --}}
     <header class="sticky top-0 z-10">
-        <div class="bg-white rounded-2xl shadow">
-            <div class="mx-auto px-8 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-24">
-                    <div class="flex">
-                        <a href="/home" class="flex-shrink-0 flex items-center">
-                            <img class="h-14 w-14 rounded-full" src="image/icon.png" alt="ACS-LOGO">
-                            <span class="text-orange-500 text-2xl ml-2 font-extrabold">ACS PRO-TECH</span>
-                        </a>
+        <section>
+            <div class="bg-white rounded-2xl shadow">
+                <div class="mx-auto px-8 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-24">
+                        <div class="flex">
+                            <a href="/home" class="flex-shrink-0 flex items-center">
+                                <img class="h-14 w-14 rounded-full" src="image/icon.png" alt="ACS-LOGO">
+                                <span class="text-orange-500 text-2xl ml-2 font-extrabold">ACS PRO-TECH</span>
+                            </a>
+                        </div>
+                        <div class="hidden md:flex items-center">
+                            <a href="#"
+                                class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">About</a>
+                            <a href="#"
+                                class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md  font-medium">Contact</a>
+                            @guest
+                                @if (Route::has('login'))
+                                @endif
+
+                                @if (Route::has('register'))
+                                @endif
+                            @else
+                                <p class="text-gray-700 text-sm mr-4">|</p>
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item text-black" href="/home">
+                                        <i class="fa fa-home py-auto" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                    <a class="dropdown-item text-black mt-3" href="/chart">
+                                        <i class="fa fa-line-chart py-auto" aria-hidden="true"></i>
+                                        Chart
+                                    </a>
+                                    <a class="dropdown-item text-black mt-3" href="">
+                                        <i class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                        Settings
+                                    </a>
+                                    <br>
+                                    <hr class="">
+                                    <a class="dropdown-item text-red-500 hover:text-red-500" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out py-auto" aria-hidden="true"></i>
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+
+                            @endguest
+
+                        </div>
+
+                        <button onclick="showHamburger()"
+                            class="text-3xl md:hidden cursor-pointer text-black font-extrabold">
+                            ☰
+                        </button>
                     </div>
-                    <div class="hidden md:flex items-center">
-                        <a href="#"
-                            class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">About</a>
-                        <a href="#"
-                            class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md  font-medium">Contact</a>
+                </div>
+            </div>
+
+        </section>
+
+        {{-- HAMBURGE SHOW --}}
+        <section id="hamburger"
+            class="bg-white w-1/2 text-center right-1 rounded-2xl shadow-md shadow-bottom-2xl border border-gray-300 -mt-5 absolute hidden lg:hidden">
+            <nav>
+                <div class="">
+                    <div class="text-gray-700 px-2 pt-4 pb-3 space-y-1 sm:px-3">
                         @guest
                             @if (Route::has('login'))
                             @endif
@@ -50,15 +113,14 @@
                             @if (Route::has('register'))
                             @endif
                         @else
-                            <p class="text-gray-700 text-sm mr-4">|</p>
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown"
+                                class="nav-link dropdown-toggle block px-3 py-2 rounded-md text-base font-medium hover:bg-yellow-200 truncate"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
                                 <a class="dropdown-item text-black" href="/home">
                                     <i class="fa fa-home py-auto" aria-hidden="true"></i>
                                     Home
@@ -75,7 +137,7 @@
                                 <hr class="">
                                 <a class="dropdown-item text-red-500 hover:text-red-500" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+               document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out py-auto" aria-hidden="true"></i>
                                     {{ __('Logout') }}
                                 </a>
@@ -84,17 +146,19 @@
                                     @csrf
                                 </form>
                             </div>
-
                         @endguest
 
-                    </div>
+                        <a href="#"
+                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Contact</a>
+                        <a href="#"
+                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">About
+                            Us</a>
 
-                    <button onclick="hamburger()" class="text-3xl md:hidden cursor-pointer text-black font-extrabold">
-                        ☰
-                    </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </nav>
+        </section>
     </header>
     {{-- END HEADER --}}
 
@@ -102,6 +166,9 @@
     <main class="">
         @yield('content')
     </main>
+
+
+    <script src="{{ asset('/js/hamburger.js') }}"></script>
 </body>
 
 </html>
