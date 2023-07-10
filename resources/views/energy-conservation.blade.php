@@ -23,7 +23,7 @@
                         {{-- ENERGY CONSERVATION --}}
 
                         <label for="appliance"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Select
+                            class="block mb-2 text-sm font-medium text-gray-900 truncate">Select
                             Time Duration</label>
                         <select id="appliance" name="selectedTime"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full sm:w-1/4 p-2.5"
@@ -43,7 +43,7 @@
                                 {{-- select --}}
                                 <div class="w-full sm:w-1/2">
                                     <label for="appliance"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Select
+                                        class="block mb-2 text-sm font-medium text-gray-900 truncate">Select
                                         Appliances</label>
                                     <select id="appliance" name="applianceName[]"
                                         class="w-full sm:1/4 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block p-2.5"

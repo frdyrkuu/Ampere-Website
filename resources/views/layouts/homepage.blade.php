@@ -17,7 +17,7 @@
 
     <!-- Scripts -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <script src="{{ asset('build/assets/app-7e506d02.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
     <link rel="stylesheet" href="/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -49,9 +49,52 @@
                                 @if (Route::has('register'))
                                 @endif
                             @else
-                                <p class="text-gray-700 text-sm mr-4">|</p>
+                                <div class="relative inline-block">
+                                    <button
+                                        class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
+                                        onclick="toggleDropdown()">
+                                        <span> {{ Auth::user()->name }}</span>
+                                        <svg class="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path d="M6 8l4 4 4-4z"></path>
+                                        </svg>
+                                    </button>
+                                    <div
+                                        class="absolute hidden bg-white text-gray-700 rounded-xl border-gray-500 mt-2 px-4 shadow-md w-full text-center">
+                                        <a href="/home" class="block px-4 py-2 hover:bg-gray-200"> <i
+                                                class="fa fa-home py-auto" aria-hidden="true"></i>
+                                            Home</a>
+                                        <a href="/chart" class="block px-4 py-2 hover:bg-gray-200"><i
+                                                class="fa fa-line-chart py-auto" aria-hidden="true"></i>
+                                            Chart</a>
+                                        <a href="" class="block px-4 py-2 hover:bg-gray-200"><i
+                                                class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                            Settings</a>
 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        <br>
+                                        <hr class="">
+
+                                        <a href="{{ route('logout') }}"
+                                            class="block px-4 py-2 text-red-500 hover:bg-gray-200"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out py-auto" aria-hidden="true"></i>
+                                            {{ __('Logout') }}</a>
+
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function toggleDropdown() {
+                                        var dropdownMenu = document.querySelector('.absolute');
+                                        dropdownMenu.classList.toggle('hidden');
+                                    }
+                                </script>
+                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -81,7 +124,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
+                                </div> --}}
 
                             @endguest
 
@@ -109,8 +152,40 @@
                             @if (Route::has('register'))
                             @endif
                         @else
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle block px-3 py-2 rounded-md text-base font-medium hover:bg-yellow-200 truncate" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a href="/home" class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">
+                                {{ Auth::user()->name }}</a>
+
+                            <a href="/home" class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">
+                                <i class="fa fa-home py-auto" aria-hidden="true"></i>
+                                Home
+                            </a>
+
+                            <a href="/chart" class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">
+                                <i class="fa fa-line-chart py-auto" aria-hidden="true"></i>
+                                Chart
+                            </a>
+
+                            <a href="#" class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">
+                                <i class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                Settings
+                            </a>
+
+                            <br>
+                            <a href="{{ route('logout') }}"
+                                class="text-red-500 block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <i class="fa fa-gear py-auto" aria-hidden="true"></i>
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            {{-- <a id="navbarDropdown"
+                                class="nav-link dropdown-toggle block px-3 py-2 rounded-md text-base font-medium hover:bg-yellow-200 truncate"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -139,16 +214,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                            </div>
+                            </div> --}}
                         @endguest
-
-                        <a href="#"
-                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Contact</a>
-                        <a href="#"
-                            class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">About
-                            Us</a>
-
-                        </a>
                     </div>
                 </div>
             </nav>

@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($inputData as $data)
-                                    <tr class="border-b dark:border-neutral-500">
+                                    <tr class="border-b">
                                         <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $data['applianceName'] }} -
                                             {{ $data['appWatts'] }} W</td>
                                         <td class="whitespace-nowrap px-6 py-4">{{ $data['numberAppliance'] }}</td>

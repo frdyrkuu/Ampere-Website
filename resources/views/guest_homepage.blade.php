@@ -1,7 +1,7 @@
 @extends('layouts.guest_homepage')
 @section('content')
     <section>
-        <h1 class="text-orange-500 font-extrabold text-4xl pt-4 px-4 sm:px-8">Let's Convert Now</h1>
+        <h1 class="text-orange-500 font-extrabold text-4xl pt-4 px-4 sm:px-8">Let's Analyze your Data Now</h1>
         <div class="p-10 flex overflow-x-auto hide-scrollbar space-x-6 w-screen">
             {{-- CARD 1 --}}
             <div class="w-full sm:w-full md:w-1/4 lg:w-1/5">

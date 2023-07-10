@@ -21,7 +21,7 @@
 
                         {{-- CKT SELECTION  --}}
 
-                        <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                        <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900">Select
                             Circuit Breaker</label>
                         <select id="circuit" name="circuitNumber"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"

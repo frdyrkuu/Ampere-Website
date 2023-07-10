@@ -4,7 +4,7 @@
     {{-- ADD CONTENT HERE FOR USER INPUT --}}
     <section class="xl:mt-20">
         <div class="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0">
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-orange-500 flex items-center mb-6 text-2xl font-bold">
                         <img class="w-24 mx-auto" src="image/ampacity-conductors.png" alt="logo">
@@ -19,7 +19,7 @@
 
                         {{-- CKT SELECTION  --}}
 
-                        <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                        <label for="circuit" class="block mb-2 text-sm font-medium text-gray-900">Select
                             Circuit Breaker</label>
                         <select id="circuit" name="circuitNumber"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
@@ -51,17 +51,17 @@
 
                         {{-- CONDUCTOR TYPE --}}
                         <label for="conductor-type"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Conductor Type</label>
+                            class="block mb-2 text-sm font-medium text-gray-900">Conductor Type</label>
 
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input type="text" id="conductor-type" aria-label="disabled input 2"
-                                class="bg-gray-100 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-100 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 name="conductorType" value="Copper" readonly>
                         </div>
 
                         {{-- NUMBER OF SETS --}}
 
-                        <label for="numberset" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number
+                        <label for="numberset" class="block mb-2 text-sm font-medium text-gray-900">Number
                             of Sets</label>
                         <select id="numberset" name="numberSets"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
@@ -80,7 +80,7 @@
                             {{-- WIRE SIZE  --}}
                             <div class="mr-2 w-1/2">
                                 <label for="wire-size"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Conductor
+                                    class="block mb-2 text-sm font-medium text-gray-900 truncate">Conductor
                                     Size</label>
                                 <select id="wire-size"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
@@ -114,7 +114,7 @@
                             {{-- WIRE TYPE --}}
                             <div class="w-1/2">
                                 <label for="wire-type"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wire Type</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">Wire Type</label>
                                 <select id="wire-type"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                                     name="wireType" required>
@@ -154,7 +154,7 @@
                             {{-- TEMPERATURE RATING  --}}
                             <div class="mr-2 w-1/2">
                                 <label for="ambient-temperature"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white truncate">Ambient
+                                    class="block mb-2 text-sm font-medium text-gray-900 truncate">Ambient
                                     Temperature</label>
                                 <input id="ambient-temperature" name="ambientTemp"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
@@ -165,7 +165,7 @@
                             {{-- NO. OF CURRENT --}}
                             <div class="w-1/2">
                                 <label for="no-current"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current
+                                    class="block mb-2 text-sm font-medium text-gray-900">Current
                                     Carrying</label>
                                 <input id="no-current" name="noCurrent"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"

@@ -14,7 +14,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <script src="{{ asset('build/assets/app-7e506d02.js') }}"></script>
+    <script src="{{ mix('build/assets/app.js') }}"></script>
+
 </head>
 
 <body class="antialiased font-['Poppins'] flex flex-col min-h-[100vh]">
@@ -56,7 +57,6 @@
                                     @endif
                                 @endauth
                             @endif
-
                         </div>
 
                         <button onclick="showHamburger()"

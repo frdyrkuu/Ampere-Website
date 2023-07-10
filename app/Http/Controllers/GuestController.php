@@ -137,7 +137,7 @@ class GuestController extends Controller
 
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
-            return redirect('percentage-of-voltage');
+            return redirect('percentage-of-voltage/guest');
         }
 
 
@@ -163,7 +163,7 @@ class GuestController extends Controller
 
         // SAVE TO DATABASE USING FOREIGN KEY
         if ($real_voltage <= 0) {
-            return redirect('percentage-of-voltage')->withErrors(['error' => 'Real Current must be greater than 0']);
+            return redirect('percentage-of-voltage/guest')->withErrors(['error' => 'Real Current must be greater than 0']);
         } else {
             return view('output-voltage-drop', [
                 'circuitNumber' => $circuit_Number,
@@ -190,9 +190,9 @@ class GuestController extends Controller
         $power_quality = $request->input('powerQuality');
         $condition = '';
 
-        if ($power_quality >= 0.010 && $power_quality <= 0.890) {
+        if ($power_quality >= 0.010 && $power_quality <= 0.840) {
             $condition = 'Voltage Sag';
-        } elseif ($power_quality >= 0.900 && $power_quality <= 1.000) {
+        } elseif ($power_quality >= 0.850 && $power_quality <= 1.000) {
             $condition = 'Safe Condition';
         } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
             $condition = 'Voltage Swell';
@@ -202,7 +202,7 @@ class GuestController extends Controller
 
 
 
-        if ($power_quality > 2) {
+        if ($power_quality >= 2) {
             return redirect('/power-quality/guest')->withErrors(['error' => 'Power quality must not be greater than 2']);
         }
         if ($power_quality <= 0) {
