@@ -13,6 +13,7 @@
                     <select id="small" onchange="submitForm()"
                         class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                         name="circuitNumber">
+                        <option value=""selected>Choose Circuit Breaker Number</option>
                         <option value="1">Circuit Breaker Number 1</option>
                         <option value="2">Circuit Breaker Number 2</option>
                         <option value="3">Circuit Breaker Number 3</option>
