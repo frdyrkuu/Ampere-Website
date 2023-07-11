@@ -12,7 +12,10 @@
                     <h1 class="text-orange-500 text-xl font-bold leading-tight tracking-tight md:text-2xl">
                         Ampacity of Conductors
                     </h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus, ut.</p>
+                    <p class="text-center">Ampacity of conductors is the maximum electrical current that can be present in a
+                        conductor of a
+                        particular size without endangering safety. Loads are not allowed to push the current over 80% of
+                        its specified ampacity.</p>
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="/ampacity-of-conductors/resultsguest">
                         @csrf

@@ -12,8 +12,8 @@
                     <h1 class="text-orange-500 text-xl font-bold leading-tight tracking-tight md:text-2xl">
                         Power Quality
                     </h1>
-                    <p class="text-center">Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Velit, iure.
+                    <p class="text-center">Power factor is a measurement of how efficiently your electrical system uses
+                        incoming power (energy efficiency).
                     </p>
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="/power-quality/results">

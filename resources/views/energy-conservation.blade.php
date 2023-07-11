@@ -12,8 +12,9 @@
                     <h1 class="text-orange-500 text-xl font-bold leading-tight tracking-tight md:text-2xl">
                         Energy Conservation
                     </h1>
-                    <p class="text-center">Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Velit, iure.
+                    <p class="text-center">Residential building's energy usage is inspected and analyzed as part of an energy
+                        audit in order to save energy. It is the first step in finding ways to lower energy usage and carbon
+                        footprint in real estate buildings.
                     </p>
 
 
@@ -22,8 +23,7 @@
                         @csrf
                         {{-- ENERGY CONSERVATION --}}
 
-                        <label for="appliance"
-                            class="block mb-2 text-sm font-medium text-gray-900 truncate">Select
+                        <label for="appliance" class="block mb-2 text-sm font-medium text-gray-900 truncate">Select
                             Time Duration</label>
                         <select id="appliance" name="selectedTime"
                             class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full sm:w-1/4 p-2.5"

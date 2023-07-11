@@ -12,9 +12,8 @@
                     <h1 class="text-orange-500 text-xl font-bold leading-tight tracking-tight md:text-2xl">
                         Ampere Trip
                     </h1>
-                    <p class="text-center">Ampere Trip [AT] it is the current set to
-                        trip the circuit [usually from 60% up to 100% of the AF]
-                    </p>
+                    <p class="text-center">Ampere Trip is the current set to trip the circuit breaker unit. Loads are not
+                        allowed to push the current over 80% of its specified ampacity.</p>
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="/amperetrip/resultsguest">
                         @csrf
