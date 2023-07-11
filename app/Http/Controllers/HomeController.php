@@ -214,7 +214,7 @@ class HomeController extends Controller
 
         // SAVE TO DATABASE USING FOREIGN KEY
         if ($real_voltage <= 0) {
-            return redirect('percentage-of-voltage')->withErrors(['error' => 'Real Current must be greater than 0']);
+            return redirect('percentage-of-voltage')->withErrors(['error' => 'Real Voltage must be greater than 0']);
         } else {
             $userId = auth()->user()->id;
 

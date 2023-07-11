@@ -50,8 +50,8 @@
                         </div>
 
                         {{-- CONDUCTOR TYPE --}}
-                        <label for="conductor-type"
-                            class="block mb-2 text-sm font-medium text-gray-900">Conductor Type</label>
+                        <label for="conductor-type" class="block mb-2 text-sm font-medium text-gray-900">Conductor
+                            Type</label>
 
                         <div class="relative h-11 w-full min-w-[200px]">
                             <input type="text" id="conductor-type" aria-label="disabled input 2"
@@ -74,6 +74,9 @@
                             <option value="5">5</option>
                             <option value="5">6</option>
                         </select>
+
+                        <p class="text-xs text-orange-500">Note: Values can be seen on the wire's insulation or on
+                            the electrical plan.</p>
                         {{-- MORE ON SELECT DROPDOWN --}}
                         <div class="flex">
 
@@ -113,8 +116,8 @@
 
                             {{-- WIRE TYPE --}}
                             <div class="w-1/2">
-                                <label for="wire-type"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Wire Type</label>
+                                <label for="wire-type" class="block mb-2 text-sm font-medium text-gray-900">Wire
+                                    Type</label>
                                 <select id="wire-type"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"
                                     name="wireType" required>
@@ -164,8 +167,7 @@
 
                             {{-- NO. OF CURRENT --}}
                             <div class="w-1/2">
-                                <label for="no-current"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Current
+                                <label for="no-current" class="block mb-2 text-sm font-medium text-gray-900">Current
                                     Carrying</label>
                                 <input id="no-current" name="noCurrent"
                                     class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5"

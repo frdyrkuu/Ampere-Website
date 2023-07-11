@@ -163,7 +163,7 @@ class GuestController extends Controller
 
         // SAVE TO DATABASE USING FOREIGN KEY
         if ($real_voltage <= 0) {
-            return redirect('percentage-of-voltage/guest')->withErrors(['error' => 'Real Current must be greater than 0']);
+            return redirect('percentage-of-voltage/guest')->withErrors(['error' => 'Real Voltage must be greater than 0']);
         } else {
             return view('output-voltage-drop', [
                 'circuitNumber' => $circuit_Number,
