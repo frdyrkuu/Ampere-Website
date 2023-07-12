@@ -176,7 +176,7 @@ const powerQualityChart = {
                     const currentY = ctx.p0.parsed.y;
                     const previousY = ctx.p1.parsed.y;
 
-                    const value = ctx.p0.parsed.y;
+                    const value = ctx.p1.parsed.y;
                     if (value >= 0 && value <= 0.8499) {
                         return 'red';
                     } else if (value >= 0.85 && value <= 1) {
