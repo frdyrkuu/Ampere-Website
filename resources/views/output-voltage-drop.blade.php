@@ -78,7 +78,8 @@
                                 <div class="">
                                     {{-- ADD SOME COMMENT ABOUT THE RESULT HERE --}}
                                     <h1 class="text-center pt-4 font-bold text-2xl" id="condition">Good</h1>
-                                    <p class="px-4 text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                    <p class="px-4 text-center" id="output-comment">Lorem, ipsum dolor sit amet consectetur
+                                        adipisicing elit.
                                         Suscipit nam repudiandae
                                         doloribus rem, aspernatur repellat voluptate tempora eligendi illo neque.</p>
                                 </div>
@@ -190,6 +191,7 @@
 
     <script>
         // Get the input element
+        const output = document.getElementById('output-comment');
         const input = document.getElementById('percentage');
 
         // Get the percentage value from the input element
@@ -204,10 +206,14 @@
             colorClass = 'text-red-500';
             condition = 'Alert';
             imageSource = '/image/alert.png';
+            output.innerHTML =
+                "It indicates that the system is at risk condition and in violation according to PEC 2.10.2.1 (A). of FPN No.4.";
         } else if (percentage >= 0 && percentage <= 3) {
             colorClass = 'text-green-500';
             condition = 'Good';
             imageSource = '/image/good.png';
+            output.innerHTML =
+                "It indicates that the system is at safe condition and acceptable according to PEC 2.10.2.1 (A). of FPN No.4.";
         }
 
         // Add the color class to the input element

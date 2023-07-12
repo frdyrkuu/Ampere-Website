@@ -190,20 +190,16 @@ class GuestController extends Controller
         $power_quality = $request->input('powerQuality');
         $condition = '';
 
-        if ($power_quality >= 0.010 && $power_quality <= 0.840) {
+        if ($power_quality >= 0 && $power_quality <= 0.8499) {
             $condition = 'Voltage Sag';
-        } elseif ($power_quality >= 0.850 && $power_quality <= 1.000) {
+        } elseif ($power_quality >= 0.85 && $power_quality <= 1.000) {
             $condition = 'Safe Condition';
-        } elseif ($power_quality >= 1.010 && $power_quality <= 1.990) {
-            $condition = 'Voltage Swell';
-        } else {
-            $condition = 'Unknown Condition';
         }
 
 
 
-        if ($power_quality >= 2) {
-            return redirect('/power-quality/guest')->withErrors(['error' => 'Power quality must not be greater than 2']);
+        if ($power_quality > 1) {
+            return redirect('/power-quality/guest')->withErrors(['error' => 'Power quality must not be greater than 1']);
         }
         if ($power_quality <= 0) {
             return redirect('/power-quality/guest')->withErrors(['error' => 'Invalid Power Quality']);

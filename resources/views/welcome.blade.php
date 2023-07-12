@@ -120,7 +120,7 @@
                     font-semibold sm:text-4xl text-black text-center md:text-left animate-reveal">
                     The <span class="text-yellow-400 font-semibold">Ultimate Guide
                     </span>
-                    to Ampere Conversion for Electrical Safety.
+                    to Data Interpretation for Electrical Safety.
                 </h2>
                 <h3
                     class="font-['Poppins'] text-xl font-thin sm:text-2xl text-gray-600 text-center md:text-left animate-reveal-x">
