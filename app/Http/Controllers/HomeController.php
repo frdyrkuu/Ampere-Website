@@ -264,7 +264,7 @@ class HomeController extends Controller
         $powerQualityCategory = "Power Quality";
 
         if ($power_quality >= 0 && $power_quality <= 0.8499) {
-            $condition = 'Voltage Sag';
+            $condition = 'At Risk Condition';
         } elseif ($power_quality >= 0.85 && $power_quality <= 1.000) {
             $condition = 'Safe Condition';
         }
