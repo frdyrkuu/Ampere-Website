@@ -9,7 +9,7 @@
                         <img class="w-16 h-16 mx-auto" src="image/icon.png" alt="logo">
                     </h1>
                     <h1 class="text-orange-500 text-xl font-bold leading-tight tracking-tight md:text-2xl">
-                        Create a account
+                        Create an account
                     </h1>
                     {{-- FORM HERE --}}
                     <form method="POST" class="space-y-4 md:space-y-6" action="{{ route('register') }}">

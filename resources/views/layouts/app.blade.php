@@ -38,7 +38,7 @@
                             </a>
                         </div>
                         <div class="hidden md:flex items-center">
-                            <a href="#"
+                            <a href="/#about"
                                 class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">About</a>
                             <a href="#"
                                 class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md  font-medium">Contact</a>
@@ -133,7 +133,7 @@
 
                         <a href="#"
                             class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">Contact</a>
-                        <a href="#"
+                        <a href="/#about"
                             class="block px-3 py-4 rounded-md text-base font-medium hover:bg-yellow-200">About
                             Us</a>
 
